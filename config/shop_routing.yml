@@ -1,13 +1,13 @@
 # Delete these routes and define your own shop routes here
 
-acme_sylius_example_static_welcome:
+commerce_weavers_sylius_also_bought_plugin_static_welcome:
     path: /static-welcome/{name}
     defaults:
-        _controller: Acme\SyliusExamplePlugin\Controller\GreetingController::staticallyGreetAction
+        _controller: CommerceWeavers\SyliusAlsoBoughtPlugin\Controller\GreetingController::staticallyGreetAction
         name: ~
 
-acme_sylius_example_dynamic_welcome:
+commerce_weavers_sylius_also_bought_plugin_dynamic_welcome:
     path: /dynamic-welcome/{name}
     defaults:
-        _controller: Acme\SyliusExamplePlugin\Controller\GreetingController::dynamicallyGreetAction
+        _controller: CommerceWeavers\SyliusAlsoBoughtPlugin\Controller\GreetingController::dynamicallyGreetAction
         name: ~

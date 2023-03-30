@@ -1,9 +1,9 @@
-acme_sylius_example_shop:
-    resource: "@AcmeSyliusExamplePlugin/config/shop_routing.yml"
+commerce_weavers_sylius_also_bought_plugin_shop:
+    resource: "@CommerceWeaversSyliusAlsoBoughtPlugin/config/shop_routing.yml"
     prefix: /{_locale}
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 
-acme_sylius_example_admin:
-    resource: "@AcmeSyliusExamplePlugin/config/admin_routing.yml"
+commerce_weavers_sylius_also_bought_plugin_admin:
+    resource: "@CommerceWeaversSyliusAlsoBoughtPlugin/config/admin_routing.yml"
     prefix: /admin

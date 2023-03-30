@@ -1,10 +1,11 @@
 {
-    "name": "sylius/plugin-skeleton",
+    "name": "commerce-weavers/other-customers-also-bought-plugin",
     "type": "sylius-plugin",
-    "description": "Acme example plugin for Sylius.",
+    "description": "Commerce Weavers Sylius Also Bought Plugin",
     "keywords": [
         "sylius",
-        "sylius-plugin"
+        "sylius-plugin",
+        "other-customer-also-bought"
     ],
     "license": "MIT",
     "require": {
@@ -61,8 +62,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusExamplePlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "CommerceWeavers\\SyliusAlsoBoughtPlugin\\": "src/",
+            "Tests\\CommerceWeavers\\SyliusAlsoBoughtPlugin\\": "tests/"
         }
     },
     "autoload-dev": {
