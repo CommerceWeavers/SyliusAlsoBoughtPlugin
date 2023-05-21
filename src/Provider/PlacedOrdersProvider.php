@@ -9,9 +9,8 @@ use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 
 final class PlacedOrdersProvider implements PlacedOrdersProviderInterface
 {
-    public function __construct(
-        private OrderRepositoryInterface $orderRepository,
-    ) {
+    public function __construct(private OrderRepositoryInterface $orderRepository)
+    {
     }
 
     public function getSince(\DateTimeInterface $since): array

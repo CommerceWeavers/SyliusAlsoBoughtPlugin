@@ -38,6 +38,9 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
         $productAssociationType = $this->productAssociationTypeRepository->findOneBy([
             'code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE
         ]);
+
+        Assert::notNull($productAssociationType);
+
         $productAssociationType->setCode(
             BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE
         );

@@ -11,11 +11,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final class SynchronizeBoughtTogetherProducts extends Command
+final class SynchronizeBoughtTogetherProductsCommand extends Command
 {
-    public function __construct(
-        private MessageBusInterface $commandBus
-    ) {
+    public function __construct(private MessageBusInterface $commandBus)
+    {
         parent::__construct('app:bought-together-products:synchronize');    // TODO: is this the right name?
     }
 

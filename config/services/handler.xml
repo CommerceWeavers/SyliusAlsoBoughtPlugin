@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizationStartedHandler">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="messenger.message_handler" bus="sylius.event_bus" />
+        </service>
+
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizationEndedHandler">
+            <argument type="service" id="commerce_weavers_sylius_also_bought_plugin.repository.product_synchronization" />
+            <tag name="messenger.message_handler" bus="sylius.event_bus" priority="10" />
+        </service>
+
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizeFrequentlyBoughtTogetherProductsHandler">
+            <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\LastSynchronizationDateProviderInterface" />
+            <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Synchronizer\FrequentlyBoughtTogetherProductsSynchronizerInterface" />
+            <argument type="service" id="sylius.event_bus" />
+            <tag name="messenger.message_handler" bus="sylius.command_bus" />
+        </service>
+    </services>
+</container>

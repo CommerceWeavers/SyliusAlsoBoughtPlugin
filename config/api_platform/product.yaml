@@ -1,0 +1,4 @@
+'%sylius.model.product.class%':
+    properties:
+        associations:
+            readable: true
