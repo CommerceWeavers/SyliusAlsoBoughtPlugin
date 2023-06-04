@@ -4,9 +4,4 @@
     <imports>
         <import resource="services/**/*.xml" />
     </imports>
-
-    <services>
-        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Controller\GreetingController" autowire="true" autoconfigure="true" public="true" />
-        <!-- Put your services here -->
-    </services>
 </container>
