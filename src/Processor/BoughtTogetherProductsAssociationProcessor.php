@@ -10,10 +10,11 @@ use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssoci
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Webmozart\Assert\Assert;
 
-final class BoughtTogetherProductsAssociationProcessor implements MessageHandlerInterface
+#[AsMessageHandler]
+final class BoughtTogetherProductsAssociationProcessor
 {
     public function __construct(
         private EntityManagerInterface $entityManager,

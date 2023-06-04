@@ -7,9 +7,10 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Handler;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class SynchronizationEndedHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class SynchronizationEndedHandler
 {
     /**
      * @param RepositoryInterface<ProductSynchronization> $productSynchronizationRepository

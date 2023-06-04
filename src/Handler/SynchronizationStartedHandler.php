@@ -3,12 +3,14 @@
 declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Handler;
+
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationStarted;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class SynchronizationStartedHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class SynchronizationStartedHandler
 {
     public function __construct(private EntityManagerInterface $entityManager)
     {

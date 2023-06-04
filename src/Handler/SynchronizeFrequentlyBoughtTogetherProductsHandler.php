@@ -9,12 +9,13 @@ use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationStarted;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\LastSynchronizationDateProviderInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Synchronizer\FrequentlyBoughtTogetherProductsSynchronizerInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\DispatchAfterCurrentBusStamp;
 use Symfony\Component\Uid\Uuid;
 
-final class SynchronizeFrequentlyBoughtTogetherProductsHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class SynchronizeFrequentlyBoughtTogetherProductsHandler
 {
     public function __construct(
         private LastSynchronizationDateProviderInterface $lastSynchronizationDateProvider,
