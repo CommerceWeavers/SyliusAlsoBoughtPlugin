@@ -56,8 +56,6 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
         ];
     }
 
-
-
     private function prependDoctrineMapping(ContainerBuilder $container): void
     {
         $config = array_merge(...$container->getExtensionConfig('doctrine'));

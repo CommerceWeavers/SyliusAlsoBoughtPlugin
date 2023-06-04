@@ -18,6 +18,7 @@ final class SynchronizationResult
         return $this->numberOfOrders;
     }
 
+    /** @return string[] */
     public function affectedProducts(): array
     {
         return $this->affectedProducts;
