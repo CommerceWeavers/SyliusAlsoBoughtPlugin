@@ -12,9 +12,9 @@ trait BroughtTogetherProductsAwareTrait
     /**
      * @var array<string, int>
      *
-     * @ORM\Column(name="bought_together_products", type="json")
+     * @ORM\Column(name="bought_together_products", type="json", nullable=false)
      */
-    #[ORM\Column(name: 'bought_together_products', type: 'json')]
+    #[ORM\Column(name: 'bought_together_products', type: 'json', nullable: false)]
     private array $boughtTogetherProducts = [];
 
     public function getBoughtTogetherProducts(): array
