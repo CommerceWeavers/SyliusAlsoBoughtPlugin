@@ -5,7 +5,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <mapped-superclass name="CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization" table="sylius_also_bought_product_synchronization">
-        <id name="id" column="id" type="integer"><generator /></id>
+        <id name="id" column="id" type="uuid" />
 
         <field name="startDate" column="start_date" type="datetime" />
         <field name="endDate" column="end_date" type="datetime" nullable="true" />
