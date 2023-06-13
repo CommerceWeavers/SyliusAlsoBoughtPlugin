@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer;
 
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;

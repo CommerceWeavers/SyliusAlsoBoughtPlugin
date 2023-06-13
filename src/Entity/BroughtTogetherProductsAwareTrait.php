@@ -30,6 +30,7 @@ trait BroughtTogetherProductsAwareTrait
         foreach ($codes as $code) {
             if (!isset($this->boughtTogetherProducts[$code])) {
                 $this->boughtTogetherProducts[$code] = 1;
+
                 continue;
             }
             ++$this->boughtTogetherProducts[$code];

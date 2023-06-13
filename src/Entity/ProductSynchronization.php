@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Uid\Uuid;
 
 class ProductSynchronization implements ProductSynchronizationInterface

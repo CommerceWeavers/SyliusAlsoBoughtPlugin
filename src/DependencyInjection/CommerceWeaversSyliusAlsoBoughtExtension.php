@@ -32,7 +32,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
             'commerce_weavers_sylius_also_bought_plugin',
             'doctrine/orm',
             $config['resources'],
-            $container
+            $container,
         );
 
         $this->prependDoctrineMigrations($container);
