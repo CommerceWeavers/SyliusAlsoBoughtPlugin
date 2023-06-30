@@ -22,10 +22,7 @@ final class SynchronizationEndedHandler
     public function __invoke(SynchronizationEnded $event): void
     {
         /** @var ProductSynchronization $productSynchronization */
-        $productSynchronization = $this->productSynchronizationRepository->find(
-            // TODO: Check if RFC4122 is necessary
-            $event->id()->toRfc4122(),
-        );
+        $productSynchronization = $this->productSynchronizationRepository->find($event->id());
 
         $productSynchronization->end($event->date(), $event->numberOfOrders(), $event->affectedProducts());
     }

@@ -26,6 +26,7 @@ final class FrequentlyBoughtTogetherProductsSynchronizer implements FrequentlyBo
 
         foreach ($orders as $order) {
             $map = $this->boughtTogetherProductsMapper->map($order);
+
             foreach ($map as $productCode => $products) {
                 $affectedProducts[$productCode] = array_merge($affectedProducts[$productCode] ?? [], $products);
             }
