@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\DependencyInjection;
 
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM\ProductSynchronizationRepository;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronizationInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
@@ -43,7 +44,7 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('interface')->defaultValue(ProductSynchronizationInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(ProductSynchronizationRepository::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

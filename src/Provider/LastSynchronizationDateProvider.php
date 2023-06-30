@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Provider;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM\ProductSynchronizationRepositoryInterface;
+use Webmozart\Assert\Assert;
 
 final class LastSynchronizationDateProvider implements LastSynchronizationDateProviderInterface
 {
-    /**
-     * @param RepositoryInterface<ProductSynchronization> $productSynchronizationRepository
-     */
-    public function __construct(private RepositoryInterface $productSynchronizationRepository)
+    public function __construct(private ProductSynchronizationRepositoryInterface $productSynchronizationRepository)
     {
     }
 
     public function provide(): \DateTimeInterface
     {
-        $lastSynchronization = $this->productSynchronizationRepository->findBy([], ['endDate' => 'DESC']);
+        $lastSynchronization = $this->productSynchronizationRepository->findLastSynchronization();
 
-        if (isset($lastSynchronization[0])) {
-            /** @var \DateTimeInterface $endDate */
-            $endDate = $lastSynchronization[0]->getEndDate();
-
-            return $endDate;
+        if (null === $lastSynchronization) {
+            return (new \DateTimeImmutable())->setTimestamp(0);
         }
 
-        return (new \DateTimeImmutable())->setTimestamp(0);
+        $endDate = $lastSynchronization->getEndDate();
+        Assert::notNull($endDate);
+
+        return $endDate;
     }
 }
