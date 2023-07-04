@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Provider;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductAssociation;
 use Sylius\Component\Product\Model\ProductAssociationType;
@@ -39,11 +40,9 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
             'code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
         ]);
 
-        Assert::notNull($productAssociationType);
-
-        $productAssociationType->setCode(
-            BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
-        );
+        if (null === $productAssociationType) {
+            throw new BoughtTogetherAssociationTypeNotFoundException();
+        }
 
         $productAssociation = $this->productAssociationFactory->createNew();
         $productAssociation->setType($productAssociationType);

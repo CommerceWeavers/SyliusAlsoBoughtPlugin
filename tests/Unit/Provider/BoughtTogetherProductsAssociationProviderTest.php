@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Provider;
 
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -57,7 +58,6 @@ final class BoughtTogetherProductsAssociationProviderTest extends TestCase
             ->willReturn($productAssociationType->reveal())
         ;
         $productAssociationFactory->createNew()->willReturn($productAssociation->reveal());
-        $productAssociationType->setCode('bought_together')->shouldBeCalled();
         $productAssociation->setType($productAssociationType->reveal())->shouldBeCalled();
         $product->addAssociation($productAssociation->reveal())->shouldBeCalled();
 
@@ -65,5 +65,30 @@ final class BoughtTogetherProductsAssociationProviderTest extends TestCase
             $productAssociation->reveal(),
             $provider->getForProduct($product->reveal())
         );
+    }
+
+    public function testThrowsExceptionIfBoughtTogetherAssociationTypeDoesNotExist(): void
+    {
+        $this->expectException(BoughtTogetherAssociationTypeNotFoundException::class);
+
+        $productAssociationFactory = $this->prophesize(FactoryInterface::class);
+        $productAssociationTypeRepository = $this->prophesize(RepositoryInterface::class);
+        $product = $this->prophesize(Product::class);
+        $this->prophesize(ProductAssociation::class);
+        $this->prophesize(ProductAssociationType::class);
+
+        $provider = new BoughtTogetherProductsAssociationProvider(
+            $productAssociationFactory->reveal(),
+            $productAssociationTypeRepository->reveal(),
+        );
+
+        $product->getBroughtTogetherAssociation()->willReturn(null);
+
+        $productAssociationTypeRepository
+            ->findOneBy(['code' => 'bought_together'])
+            ->willReturn(null)
+        ;
+
+        $provider->getForProduct($product->reveal());
     }
 }

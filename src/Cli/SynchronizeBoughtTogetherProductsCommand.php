@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Cli;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Command\SynchronizeFrequentlyBoughtTogetherProducts;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\Exception\DelayedMessageHandlingException;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -15,7 +17,7 @@ final class SynchronizeBoughtTogetherProductsCommand extends Command
 {
     public function __construct(private MessageBusInterface $commandBus)
     {
-        parent::__construct('app:bought-together-products:synchronize');    // TODO: is this the right name?
+        parent::__construct('sylius:bought-together-products:synchronize');
     }
 
     protected function configure(): void
@@ -32,6 +34,14 @@ final class SynchronizeBoughtTogetherProductsCommand extends Command
         } catch (HandlerFailedException $exception) {
             if (null !== $prevousException = $exception->getPrevious()) {
                 throw $prevousException;
+            }
+
+            throw $exception;
+        } catch (DelayedMessageHandlingException $exception) {
+            if ($exception->getPrevious()?->getPrevious() instanceof BoughtTogetherAssociationTypeNotFoundException) {
+                $output->writeln(sprintf('<error>%s</error>', $exception->getMessage()));
+
+                return Command::FAILURE;
             }
 
             throw $exception;
