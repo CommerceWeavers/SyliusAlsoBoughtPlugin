@@ -8,12 +8,13 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
 use Sylius\Component\Product\Model\ProductAssociation;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
+use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class ProductNormalizer implements NormalizerInterface, NormalizerAwareInterface
+final class ProductNormalizer implements ContextAwareNormalizerInterface, NormalizerAwareInterface
 {
-    /** @param NormalizerInterface&NormalizerAwareInterface $decoratedNormalizer */
+    /** @param ContextAwareNormalizerInterface&NormalizerAwareInterface $decoratedNormalizer */
     public function __construct(
         private NormalizerInterface $decoratedNormalizer,
         private ItemDataProviderInterface $itemDataProvider,
@@ -21,9 +22,9 @@ final class ProductNormalizer implements NormalizerInterface, NormalizerAwareInt
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null): bool
+    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
-        return $this->decoratedNormalizer->supportsNormalization($data, $format);
+        return $this->decoratedNormalizer->supportsNormalization($data, $format, $context);
     }
 
     public function normalize($object, string $format = null, array $context = []): array

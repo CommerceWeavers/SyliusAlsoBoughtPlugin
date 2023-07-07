@@ -16,4 +16,12 @@
             <file name="src/DependencyInjection/Configuration.php" />
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <DeprecatedInterface>
+            <errorLevel type="info">
+                <referencedClass name="Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface" /> <!-- deprecated in Symfony 6.1 -->
+            </errorLevel>
+        </DeprecatedInterface>
+    </issueHandlers>
 </psalm>

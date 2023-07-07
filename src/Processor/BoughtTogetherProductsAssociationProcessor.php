@@ -34,6 +34,7 @@ final class BoughtTogetherProductsAssociationProcessor
         foreach ($products as $product) {
             $boughtTogetherProducts = array_slice($product->getBoughtTogetherProducts(), 0, $this->numberOfProductsToAssociate - 1, true);
             $boughtTogetherAssociation = $this->boughtTogetherProductsAssociationProvider->getForProduct($product);
+            $this->entityManager->persist($boughtTogetherAssociation);
 
             $frequentlyBoughtTogetherProducts = $this->findProductsByCodes(array_keys($boughtTogetherProducts));
             $boughtTogetherAssociation->clearAssociatedProducts();
