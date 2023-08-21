@@ -6,6 +6,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
     <services>
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Cli\CreateBoughtTogetherProductAssociationTypeCommand">
+            <argument type="service" id="Symfony\Component\Messenger\MessageBusInterface" />
+            <argument type="service" id="sylius.repository.product_association_type" />
+            <tag name="console.command" />
+        </service>
+
         <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Cli\SynchronizeBoughtTogetherProductsCommand">
             <argument type="service" id="Symfony\Component\Messenger\MessageBusInterface" />
             <tag name="console.command" />

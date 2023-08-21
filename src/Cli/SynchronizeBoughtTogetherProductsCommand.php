@@ -17,7 +17,7 @@ final class SynchronizeBoughtTogetherProductsCommand extends Command
 {
     public function __construct(private MessageBusInterface $commandBus)
     {
-        parent::__construct('sylius:bought-together-products:synchronize');
+        parent::__construct('sylius:also-bought:synchronize');
     }
 
     protected function configure(): void

@@ -15,7 +15,7 @@ use Webmozart\Assert\Assert;
 
 final class SynchronizeBoughtTogetherProductsContext implements Context
 {
-    private const COMMAND_NAME = 'sylius:bought-together-products:synchronize';
+    private const COMMAND_NAME = 'sylius:also-bought:synchronize';
 
     private Application $application;
 

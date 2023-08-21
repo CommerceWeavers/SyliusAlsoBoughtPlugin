@@ -20,6 +20,7 @@ default:
                 - sylius.behat.context.transform.shared_storage
                 - sylius.behat.context.transform.shipping_method
                     
+                - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\CreateBoughtTogetherProductAssociationTypeContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\SynchronizeBoughtTogetherProductsContext
             filters:
                 tags: "@also_bought&&@cli"

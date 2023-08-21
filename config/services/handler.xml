@@ -6,6 +6,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
 >
     <services>
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\CreateBoughtTogetherAssociationTypeHandler">
+            <argument type="service" id="sylius.factory.product_association_type" />
+            <argument type="service" id="sylius.repository.product_association_type" />
+            <tag name="messenger.message_handler" bus="sylius.command_bus" />
+        </service>
+
         <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizationStartedHandler">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <tag name="messenger.message_handler" bus="sylius.event_bus" />

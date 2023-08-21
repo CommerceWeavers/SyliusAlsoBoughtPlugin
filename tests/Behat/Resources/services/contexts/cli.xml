@@ -4,6 +4,10 @@
     <services>
         <defaults public="true" />
 
+        <service id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\CreateBoughtTogetherProductAssociationTypeContext">
+            <argument type="service" id="kernel" />
+        </service>
+
         <service id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\SynchronizeBoughtTogetherProductsContext">
             <argument type="service" id="kernel" />
         </service>

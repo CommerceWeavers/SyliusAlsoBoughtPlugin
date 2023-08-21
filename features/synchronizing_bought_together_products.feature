@@ -1,5 +1,5 @@
 @also_bought
-Feature: Synchronize bought together products
+Feature: Synchronizing bought together products
     In order to have bought together products up to date
     As a Developer
     I want to run a command that will synchronize bought together products with orders
