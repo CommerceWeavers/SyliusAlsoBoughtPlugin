@@ -1,4 +1,5 @@
 imports:
     - suites/api/viewing_products.yaml
     - suites/cli/also_bought.yaml
+    - suites/ui/viewing_error_message.yaml
     - suites/ui/viewing_products.yaml
