@@ -12,6 +12,7 @@ final class ProductSynchronizationRepository extends EntityRepository implements
 {
     public function findLastSynchronization(): ?ProductSynchronizationInterface
     {
+        /** @var ProductSynchronizationInterface|null $productSynchronization */
         $productSynchronization = $this->createQueryBuilder('o')
             ->andWhere('o.endDate IS NOT NULL')
             ->orderBy('o.endDate', 'DESC')
@@ -19,8 +20,6 @@ final class ProductSynchronizationRepository extends EntityRepository implements
             ->getQuery()
             ->getOneOrNullResult()
         ;
-
-        Assert::nullOrIsInstanceOf($productSynchronization, ProductSynchronizationInterface::class);
 
         return $productSynchronization;
     }

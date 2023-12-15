@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Api\Normalizer;
 
-
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer\ProductNormalizer;
 use PHPUnit\Framework\TestCase;

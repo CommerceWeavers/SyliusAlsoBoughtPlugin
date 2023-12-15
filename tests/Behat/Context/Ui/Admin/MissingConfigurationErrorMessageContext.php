@@ -20,7 +20,7 @@ final class MissingConfigurationErrorMessageContext implements Context
      */
     public function iShouldSeeTheErrorMessageAboutMissingConfiguration(): void
     {
-        Assert::true($this->missingConfigurationErrorMessageElement->isErrorMessage());
+        Assert::true($this->missingConfigurationErrorMessageElement->hasErrorMessage());
     }
 
     /**
@@ -28,6 +28,6 @@ final class MissingConfigurationErrorMessageContext implements Context
      */
     public function iShouldNotSeeTheErrorMessageAboutMissingConfiguration(): void
     {
-        Assert::false($this->missingConfigurationErrorMessageElement->isErrorMessage());
+        Assert::false($this->missingConfigurationErrorMessageElement->hasErrorMessage());
     }
 }

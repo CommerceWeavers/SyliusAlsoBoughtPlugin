@@ -1,5 +1,5 @@
 commerce_weavers_sylius_also_bought_plugin:
     missing_configuration_error_message:
         title: 'SyliusAlsoBoughtPlugin: manual action required'
-        error_explanation: 'SyliusAlsoBoughtPlugin is installed, but a product association type with a code "bought_together" does not exist.'
-        error_solution: 'Fix the issue by creating a product association type.'
+        error_explanation: 'SyliusAlsoBoughtPlugin is installed, but the necessary product association type with code "bought_together" does not exist.'
+        error_solution: 'Create it to fix the issue.'

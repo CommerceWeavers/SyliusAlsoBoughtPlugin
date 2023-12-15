@@ -6,5 +6,5 @@ namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Element\Admin;
 
 interface MissingConfigurationErrorMessageElementInterface
 {
-    public function isErrorMessage(): bool;
+    public function hasErrorMessage(): bool;
 }

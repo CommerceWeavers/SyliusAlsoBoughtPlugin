@@ -8,7 +8,7 @@ use FriendsOfBehat\PageObjectExtension\Element\Element;
 
 final class MissingConfigurationErrorMessageElement extends Element implements MissingConfigurationErrorMessageElementInterface
 {
-    public function isErrorMessage(): bool
+    public function hasErrorMessage(): bool
     {
         return $this->hasElement('error_message');
     }

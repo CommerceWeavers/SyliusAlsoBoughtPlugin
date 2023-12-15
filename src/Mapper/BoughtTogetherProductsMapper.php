@@ -5,31 +5,27 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Mapper;
 
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class BoughtTogetherProductsMapper implements BoughtTogetherProductsMapperInterface
 {
     public function map(OrderInterface $order): array
     {
         $map = [];
-        $productCodes = [];
 
-        foreach ($order->getItems() as $item) {
-            $productCode = $item->getProduct()?->getCode();
+        /** @var string[] $productCodes */
+        $productCodes = $order
+            ->getItems()
+            ->map(fn (OrderItemInterface $item): ?string => $item->getProduct()?->getCode())
+            ->filter(fn (?string $code): bool => $code !== null)
+            ->toArray()
+        ;
 
-            if ($productCode === null) {
-                continue;
-            }
-
-            $productCodes[] = $productCode;
-        }
+        sort($productCodes);
 
         foreach ($productCodes as $productCode) {
-            $map[$productCode] = array_diff($productCodes, [$productCode]);
-
-            sort($map[$productCode]);
+            $map[$productCode] = array_values(array_diff($productCodes, [$productCode]));
         }
-
-        ksort($map);
 
         return $map;
     }
