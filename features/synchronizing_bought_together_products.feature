@@ -4,10 +4,14 @@ Feature: Synchronizing bought together products
     As a Developer
     I want to run a command that will synchronize bought together products with orders
 
+    Background:
+        Given the store operates on a single channel in "United States"
+        And the store ships everywhere for free
+        And the store allows paying with "Cash on delivery"
+
     @cli
     Scenario: Running bought together products command
-        Given the store operates on a single channel in "United States"
-        And the store has a product association type "Bought together" with a code "bought_together"
+        Given the store has a product association type "Bought together" with a code "bought_together"
         And the store has a product "Weaver"
         And the store has a product "Swan"
         And the store has a product "Swift"
@@ -16,8 +20,6 @@ Feature: Synchronizing bought together products
         And the store has a product "Bird feeder"
         And the store has a product "Bird bath"
         And the store has a product "Bird netting"
-        And the store ships everywhere for free
-        And the store allows paying with "Cash on delivery"
         And there is a customer "john.doe@example.com" that placed an order
         And the customer bought a single "Weaver"
         And the customer bought 100 "Grains" products
@@ -53,10 +55,7 @@ Feature: Synchronizing bought together products
 
     @cli
     Scenario: The command requires bought together association type
-        Given the store operates on a single channel in "United States"
-        And the store has a product "Weaver"
-        And the store ships everywhere for free
-        And the store allows paying with "Cash on delivery"
+        Given the store has a product "Weaver"
         And there is a customer "john.doe@example.com" that placed an order
         And the customer bought a single "Weaver"
         And the customer "John Doe" addressed it to "Elm Street", "90802" "Anytown" in the "United States" with identical billing address
