@@ -23,9 +23,9 @@ final class BoughtTogetherProductsInfoSaverTest extends TestCase
 
         $saver = new BoughtTogetherProductsInfoSaver($productRepository->reveal(), $entityManager->reveal());
 
-        $productRepository->findOneByCode('10273')->willReturn($product->reveal());
-        $product->increaseBoughtTogetherProductsCount(['12182', '12183'])->shouldBeCalled();
+        $productRepository->findOneByCode('first_product_code')->willReturn($product->reveal());
+        $product->increaseBoughtTogetherProductsCount(['second_product_code', 'third_product_code'])->shouldBeCalled();
 
-        $saver->save('10273', ['12182', '12183']);
+        $saver->save('first_product_code', ['second_product_code', 'third_product_code']);
     }
 }
