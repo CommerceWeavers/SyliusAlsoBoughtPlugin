@@ -6,7 +6,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Entity;
 
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 
-interface BroughtTogetherProductsAwareInterface
+interface BoughtTogetherProductsAwareInterface
 {
     public const BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE = 'bought_together';
 

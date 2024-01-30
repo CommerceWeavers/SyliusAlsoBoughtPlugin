@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Cli;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Command\CreateBoughtTogetherProductAssociationType;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Sylius\Component\Product\Repository\ProductAssociationTypeRepositoryInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -32,7 +32,7 @@ final class CreateBoughtTogetherProductAssociationTypeCommand extends Command
         $output->writeln('Setup started.');
 
         $boughtTogetherAssociationType = $this->productAssociationTypeRepository
-            ->findOneBy(['code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE]);
+            ->findOneBy(['code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE]);
 
         if (null === $boughtTogetherAssociationType) {
             $this->createBoughtTogetherProductAssociationType();

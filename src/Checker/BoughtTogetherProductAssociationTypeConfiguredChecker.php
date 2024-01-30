@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Checker;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Sylius\Component\Product\Repository\ProductAssociationTypeRepositoryInterface;
 
 final class BoughtTogetherProductAssociationTypeConfiguredChecker implements BoughtTogetherProductAssociationTypeConfiguredCheckerInterface
@@ -16,7 +16,7 @@ final class BoughtTogetherProductAssociationTypeConfiguredChecker implements Bou
     public function isConfigured(): bool
     {
         $productAssociationType = $this->productAssociationTypeRepository->findOneBy([
-            'code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
+            'code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
         ]);
 
         return null !== $productAssociationType;

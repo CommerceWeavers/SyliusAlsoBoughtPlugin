@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Provider;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductAssociation;
@@ -27,7 +27,7 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
 
     public function getForProduct(ProductInterface $product): ProductAssociation
     {
-        Assert::isInstanceOf($product, BroughtTogetherProductsAwareInterface::class);
+        Assert::isInstanceOf($product, BoughtTogetherProductsAwareInterface::class);
 
         /** @var ProductAssociation|null $productAssociation */
         $productAssociation = $product->getBroughtTogetherAssociation();
@@ -37,7 +37,7 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
         }
 
         $productAssociationType = $this->productAssociationTypeRepository->findOneBy([
-            'code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
+            'code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
         ]);
 
         if (null === $productAssociationType) {

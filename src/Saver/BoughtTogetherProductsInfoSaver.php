@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Saver;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
@@ -19,7 +19,7 @@ final class BoughtTogetherProductsInfoSaver implements BoughtTogetherProductsInf
 
     public function save(string $productCode, array $productCodes): void
     {
-        /** @var ProductInterface&BroughtTogetherProductsAwareInterface $product */
+        /** @var ProductInterface&BoughtTogetherProductsAwareInterface $product */
         $product = $this->productRepository->findOneByCode($productCode);
 
         $product->increaseBoughtTogetherProductsCount($productCodes);
