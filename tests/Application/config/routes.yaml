@@ -1,9 +1,9 @@
-commerce_weavers_sylius_also_bought_plugin_shop:
+commerce_weavers_sylius_also_bought_shop:
     resource: "@CommerceWeaversSyliusAlsoBoughtPlugin/config/shop_routing.yml"
     prefix: /{_locale}
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 
-commerce_weavers_sylius_also_bought_plugin_admin:
+commerce_weavers_sylius_also_bought_admin:
     resource: "@CommerceWeaversSyliusAlsoBoughtPlugin/config/admin_routing.yml"
     prefix: /admin

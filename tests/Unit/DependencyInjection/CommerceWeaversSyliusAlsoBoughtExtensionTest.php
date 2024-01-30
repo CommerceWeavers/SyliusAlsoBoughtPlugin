@@ -14,7 +14,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtensionTest extends AbstractExtensi
         $this->prepend();
 
         $this->assertContainerBuilderHasParameter(
-            'commerce_weavers_sylius_also_bought_plugin.number_of_products_to_associate',
+            'commerce_weavers_sylius_also_bought.number_of_products_to_associate',
             10,
         );
     }
@@ -30,7 +30,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtensionTest extends AbstractExtensi
         $this->prepend();
 
         $this->assertContainerBuilderHasParameter(
-            'commerce_weavers_sylius_also_bought_plugin.number_of_products_to_associate',
+            'commerce_weavers_sylius_also_bought.number_of_products_to_associate',
             5,
         );
     }

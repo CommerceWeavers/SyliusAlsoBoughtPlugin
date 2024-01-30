@@ -18,7 +18,7 @@
             id="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\LastSynchronizationDateProviderInterface"
             class="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\LastSynchronizationDateProvider"
         >
-            <argument type="service" id="commerce_weavers_sylius_also_bought_plugin.repository.product_synchronization" />
+            <argument type="service" id="commerce_weavers_sylius_also_bought.repository.product_synchronization" />
         </service>
 
         <service

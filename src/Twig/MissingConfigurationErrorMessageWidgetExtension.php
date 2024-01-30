@@ -20,7 +20,7 @@ final class MissingConfigurationErrorMessageWidgetExtension extends AbstractExte
     {
         return [
             new TwigFunction(
-                'commerce_weavers_sylius_also_bought_plugin_missing_configuration_error_message_widget',
+                'commerce_weavers_sylius_also_bought_missing_configuration_error_message_widget',
                 [$this, 'render'],
                 [
                     'needs_environment' => true,

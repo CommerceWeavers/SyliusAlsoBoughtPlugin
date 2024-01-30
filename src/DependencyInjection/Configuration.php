@@ -18,7 +18,7 @@ final class Configuration implements ConfigurationInterface
     /** @psalm-suppress UnusedVariable */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('commerce_weavers_sylius_also_bought_plugin');
+        $treeBuilder = new TreeBuilder('commerce_weavers_sylius_also_bought');
         $rootNode = $treeBuilder->getRootNode();
 
         $this->addConfiguration($rootNode);

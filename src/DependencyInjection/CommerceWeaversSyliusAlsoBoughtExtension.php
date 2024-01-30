@@ -16,7 +16,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
 {
     use PrependDoctrineMigrationsTrait;
 
-    private const ALIAS = 'commerce_weavers_sylius_also_bought_plugin';
+    private const ALIAS = 'commerce_weavers_sylius_also_bought';
 
     /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
@@ -38,7 +38,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
         );
 
         $container->setParameter(
-            'commerce_weavers_sylius_also_bought_plugin.number_of_products_to_associate',
+            'commerce_weavers_sylius_also_bought.number_of_products_to_associate',
             $config['number_of_products_to_associate'],
         );
 
