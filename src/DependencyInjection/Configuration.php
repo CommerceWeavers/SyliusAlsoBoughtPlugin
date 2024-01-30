@@ -21,9 +21,19 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('commerce_weavers_sylius_also_bought_plugin');
         $rootNode = $treeBuilder->getRootNode();
 
+        $this->addConfiguration($rootNode);
         $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
+    }
+
+    private function addConfiguration(ArrayNodeDefinition $node): void
+    {
+        $node
+            ->children()
+                ->integerNode('number_of_products_to_associate')->defaultValue(10)->end()
+            ->end()
+        ;
     }
 
     private function addResourcesSection(ArrayNodeDefinition $node): void
