@@ -6,7 +6,6 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronizationInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Webmozart\Assert\Assert;
 
 final class ProductSynchronizationRepository extends EntityRepository implements ProductSynchronizationRepositoryInterface
 {

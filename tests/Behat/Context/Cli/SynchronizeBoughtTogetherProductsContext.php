@@ -19,7 +19,7 @@ final class SynchronizeBoughtTogetherProductsContext implements Context
 
     private Application $application;
 
-    private ?CommandTester $commandTester = null;
+    private CommandTester $commandTester;
 
     public function __construct(KernelInterface $kernel)
     {
@@ -87,7 +87,7 @@ final class SynchronizeBoughtTogetherProductsContext implements Context
 
             Assert::count(
                 array_intersect($productCodesWithSameWeight, $expectedProductCodesWithSameWeight),
-                count($expectedProductCodesWithSameWeight)
+                count($expectedProductCodesWithSameWeight),
             );
         }
     }

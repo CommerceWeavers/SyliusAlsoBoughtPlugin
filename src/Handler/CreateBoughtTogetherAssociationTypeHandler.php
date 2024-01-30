@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Handler;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Cli\CreateBoughtTogetherProductAssociationTypeCommand;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Command\CreateBoughtTogetherProductAssociationType;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;

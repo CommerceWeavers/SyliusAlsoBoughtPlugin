@@ -33,7 +33,7 @@ final class ProductContext implements Context
         /** @var ProductInterface $product */
         $product = $this->sharedStorage->get('product');
 
-        $response = $this->client->show(Resources::PRODUCTS, $product->getCode());
+        $response = $this->client->show(Resources::PRODUCTS, (string) $product->getCode());
 
         /** @var array<string, string> $associations */
         $associations = $this->responseChecker->getValue($response, 'associations');
@@ -43,7 +43,6 @@ final class ProductContext implements Context
 
         /** @var ProductAssociationInterface $boughtTogetherAssociation */
         $boughtTogetherAssociation = $this->iriConverter->getItemFromIri($boughtTogetherAssociationIri);
-        Assert::isInstanceOf($boughtTogetherAssociation, ProductAssociationInterface::class);
 
         Assert::false($boughtTogetherAssociation->hasAssociatedProduct($associatedProduct));
     }
@@ -56,7 +55,7 @@ final class ProductContext implements Context
         /** @var ProductInterface $product */
         $product = $this->sharedStorage->get('product');
 
-        $response = $this->client->show(Resources::PRODUCTS, $product->getCode());
+        $response = $this->client->show(Resources::PRODUCTS, (string) $product->getCode());
 
         /** @var array<string, string> $associations */
         $associations = $this->responseChecker->getValue($response, 'associations');

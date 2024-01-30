@@ -18,7 +18,7 @@ final class OrderContext implements Context
      * @Given /^the customer (bought a single "([^"]+)", "([^"]+)" and "([^"]+)")$/
      * @Given /^the customer (bought a single "([^"]+)", "([^"]+)", "([^"]+)" and "([^"]+)")$/
      *
-     * @var ProductInterface[] $products
+     * @param ProductInterface[] $products
      */
     public function customerBoughtASingle(array $products): void
     {

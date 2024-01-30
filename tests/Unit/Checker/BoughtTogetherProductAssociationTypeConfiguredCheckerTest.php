@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Checker;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Checker\BoughtTogetherProductAssociationTypeConfiguredChecker;
