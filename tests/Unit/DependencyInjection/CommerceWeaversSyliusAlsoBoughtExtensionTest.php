@@ -6,7 +6,7 @@ use CommerceWeavers\SyliusAlsoBoughtPlugin\DependencyInjection\CommerceWeaversSy
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
-class CommerceWeaversSyliusAlsoBoughtExtensionTest extends AbstractExtensionTestCase
+final class CommerceWeaversSyliusAlsoBoughtExtensionTest extends AbstractExtensionTestCase
 {
     /** @test */
     public function it_prepends_configuration_with_number_of_products_to_associate_with_default_value(): void

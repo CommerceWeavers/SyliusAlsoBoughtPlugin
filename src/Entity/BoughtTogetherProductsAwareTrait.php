@@ -39,7 +39,7 @@ trait BoughtTogetherProductsAwareTrait
         arsort($this->boughtTogetherProducts);
     }
 
-    public function getBroughtTogetherAssociation(): ?ProductAssociationInterface
+    public function getBoughtTogetherAssociation(): ?ProductAssociationInterface
     {
         foreach ($this->associations as $association) {
             if ($association->getType()->getCode() === BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE) {

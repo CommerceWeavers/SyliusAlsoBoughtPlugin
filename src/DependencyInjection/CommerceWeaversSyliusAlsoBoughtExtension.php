@@ -16,6 +16,8 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
 {
     use PrependDoctrineMigrationsTrait;
 
+    private const ALIAS = 'commerce_weavers_sylius_also_bought_plugin';
+
     /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -29,7 +31,7 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
         $config = $this->getCurrentConfiguration($container);
 
         $this->registerResources(
-            'commerce_weavers_sylius_also_bought_plugin',
+            self::ALIAS,
             'doctrine/orm',
             $config['resources'],
             $container,

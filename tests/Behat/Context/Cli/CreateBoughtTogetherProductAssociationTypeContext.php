@@ -27,9 +27,9 @@ final class CreateBoughtTogetherProductAssociationTypeContext implements Context
     }
 
     /**
-     * @When I create a bought together product association type
+     * @When I create the bought together product association type
      */
-    public function runCreateBoughtTogetherProductAssociationTypeCommand(): void
+    public function iCreateBoughtTogetherProductAssociationType(): void
     {
         $this->commandTester = new CommandTester($this->application->find(self::COMMAND_NAME));
         $this->commandTester->execute(['command' => self::COMMAND_NAME]);

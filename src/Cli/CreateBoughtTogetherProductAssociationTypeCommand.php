@@ -31,18 +31,20 @@ final class CreateBoughtTogetherProductAssociationTypeCommand extends Command
     {
         $output->writeln('Setup started.');
 
-        $boughtTogetherAssociationType = $this->productAssociationTypeRepository
-            ->findOneBy(['code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE]);
+        $boughtTogetherAssociationType = $this
+            ->productAssociationTypeRepository
+            ->findOneBy(['code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE])
+        ;
 
-        if (null === $boughtTogetherAssociationType) {
-            $this->createBoughtTogetherProductAssociationType();
-
-            $output->writeln('The "bought together" product association type created.');
-        } else {
+        if (null !== $boughtTogetherAssociationType) {
             $output->writeln('The "bought together" product association type already exists.');
+
+            return Command::SUCCESS;
         }
 
-        $output->writeln('Setup finished successfully.');
+        $this->createBoughtTogetherProductAssociationType();
+
+        $output->writeln('The "bought together" product association type created.');
 
         return Command::SUCCESS;
     }

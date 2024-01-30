@@ -15,5 +15,5 @@ interface BoughtTogetherProductsAwareInterface
 
     public function increaseBoughtTogetherProductsCount(array $codes): void;
 
-    public function getBroughtTogetherAssociation(): ?ProductAssociationInterface;
+    public function getBoughtTogetherAssociation(): ?ProductAssociationInterface;
 }

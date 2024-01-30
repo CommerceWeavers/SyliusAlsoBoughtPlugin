@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Exception;
 
-class BoughtTogetherAssociationTypeNotFoundException extends \RuntimeException
+final class BoughtTogetherAssociationTypeNotFoundException extends \RuntimeException
 {
     public function __construct()
     {

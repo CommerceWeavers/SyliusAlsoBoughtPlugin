@@ -30,7 +30,7 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
         Assert::isInstanceOf($product, BoughtTogetherProductsAwareInterface::class);
 
         /** @var ProductAssociation|null $productAssociation */
-        $productAssociation = $product->getBroughtTogetherAssociation();
+        $productAssociation = $product->getBoughtTogetherAssociation();
 
         if (null !== $productAssociation) {
             return $productAssociation;

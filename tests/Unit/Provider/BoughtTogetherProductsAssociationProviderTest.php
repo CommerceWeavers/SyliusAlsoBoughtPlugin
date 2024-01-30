@@ -30,7 +30,7 @@ final class BoughtTogetherProductsAssociationProviderTest extends TestCase
             $productAssociationTypeRepository->reveal(),
         );
 
-        $product->getBroughtTogetherAssociation()->willReturn($productAssociation->reveal());
+        $product->getBoughtTogetherAssociation()->willReturn($productAssociation->reveal());
 
         self::assertSame(
             $productAssociation->reveal(),
@@ -51,7 +51,7 @@ final class BoughtTogetherProductsAssociationProviderTest extends TestCase
             $productAssociationTypeRepository->reveal(),
         );
 
-        $product->getBroughtTogetherAssociation()->willReturn(null);
+        $product->getBoughtTogetherAssociation()->willReturn(null);
 
         $productAssociationTypeRepository
             ->findOneBy(['code' => 'bought_together'])
@@ -82,7 +82,7 @@ final class BoughtTogetherProductsAssociationProviderTest extends TestCase
             $productAssociationTypeRepository->reveal(),
         );
 
-        $product->getBroughtTogetherAssociation()->willReturn(null);
+        $product->getBoughtTogetherAssociation()->willReturn(null);
 
         $productAssociationTypeRepository
             ->findOneBy(['code' => 'bought_together'])
