@@ -6,6 +6,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Cli;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Command\SynchronizeFrequentlyBoughtTogetherProducts;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,16 +14,15 @@ use Symfony\Component\Messenger\Exception\DelayedMessageHandlingException;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
+#[AsCommand(
+    name: 'sylius:also-bought:synchronize',
+    description: 'Synchronize products that are usually bought together.',
+)]
 final class SynchronizeBoughtTogetherProductsCommand extends Command
 {
     public function __construct(private MessageBusInterface $commandBus)
     {
-        parent::__construct('sylius:also-bought:synchronize');
-    }
-
-    protected function configure(): void
-    {
-        $this->setDescription('Synchronize products that are usually bought together.');
+        parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
