@@ -27,7 +27,7 @@ final class CreateBoughtTogetherProductAssociationTypeContext implements Context
     }
 
     /**
-     * @When I create a bought together product association type by running command
+     * @When I create a bought together product association type
      */
     public function runCreateBoughtTogetherProductAssociationTypeCommand(): void
     {
