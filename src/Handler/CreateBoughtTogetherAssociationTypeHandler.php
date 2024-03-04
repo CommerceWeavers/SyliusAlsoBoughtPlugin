@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Handler;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Cli\CreateBoughtTogetherProductAssociationTypeCommand;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Command\CreateBoughtTogetherProductAssociationType;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
 use Sylius\Component\Product\Repository\ProductAssociationTypeRepositoryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -28,7 +27,7 @@ final class CreateBoughtTogetherAssociationTypeHandler
     {
         /** @var ProductAssociationTypeInterface $productAssociationType */
         $productAssociationType = $this->productAssociationTypeFactory->createNew();
-        $productAssociationType->setCode(BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE);
+        $productAssociationType->setCode(BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE);
         $productAssociationType->setName('Bought together');
 
         $this->productAssociationTypeRepository->add($productAssociationType);

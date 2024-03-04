@@ -7,7 +7,6 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Handler;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM\ProductSynchronizationRepositoryInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]

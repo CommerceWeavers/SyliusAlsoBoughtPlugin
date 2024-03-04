@@ -6,5 +6,5 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Provider;
 
 interface LastSynchronizationDateProviderInterface
 {
-    public function provide(): \DateTimeInterface;
+    public function provide(): ?\DateTimeInterface;
 }

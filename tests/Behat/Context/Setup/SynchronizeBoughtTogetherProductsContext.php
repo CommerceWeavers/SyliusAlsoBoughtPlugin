@@ -10,7 +10,7 @@ use Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\SynchronizeBo
 final class SynchronizeBoughtTogetherProductsContext implements Context
 {
     public function __construct(
-        private CliSynchronizeBoughtTogetherProductsContext $cliSynchronizeBoughtTogetherProductsContext
+        private CliSynchronizeBoughtTogetherProductsContext $cliSynchronizeBoughtTogetherProductsContext,
     ) {
     }
 

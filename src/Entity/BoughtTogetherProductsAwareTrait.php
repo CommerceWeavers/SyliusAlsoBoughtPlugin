@@ -7,7 +7,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 
-trait BroughtTogetherProductsAwareTrait
+trait BoughtTogetherProductsAwareTrait
 {
     /**
      * @var array<string, int>
@@ -39,10 +39,10 @@ trait BroughtTogetherProductsAwareTrait
         arsort($this->boughtTogetherProducts);
     }
 
-    public function getBroughtTogetherAssociation(): ?ProductAssociationInterface
+    public function getBoughtTogetherAssociation(): ?ProductAssociationInterface
     {
         foreach ($this->associations as $association) {
-            if ($association->getType()->getCode() === BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE) {
+            if ($association->getType()->getCode() === BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE) {
                 return $association;
             }
         }

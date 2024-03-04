@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Processor;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,7 +29,7 @@ final class BoughtTogetherProductsAssociationProcessor
         /** @var ProductInterface[] $products */
         $products = $this->findProductsByCodes($event->affectedProducts());
 
-        Assert::allIsInstanceOf($products, BroughtTogetherProductsAwareInterface::class);
+        Assert::allIsInstanceOf($products, BoughtTogetherProductsAwareInterface::class);
 
         foreach ($products as $product) {
             $boughtTogetherProducts = array_slice($product->getBoughtTogetherProducts(), 0, $this->numberOfProductsToAssociate - 1, true);

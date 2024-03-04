@@ -29,14 +29,14 @@ final class LastSynchronizationDateProviderTest extends TestCase
         );
     }
 
-    public function testItProvidesEarliestPossibleDateIfThereIsNoSynchronizationLog(): void
+    public function testItReturnsNullIfThereIsNoSynchronizationLog(): void
     {
         $productSynchronizationRepository = $this->prophesize(ProductSynchronizationRepositoryInterface::class);
 
         $productSynchronizationRepository->findLastSynchronization()->willReturn(null);
 
         self::assertEquals(
-            (new \DateTimeImmutable())->setTimestamp(0),
+            null,
             (new LastSynchronizationDateProvider($productSynchronizationRepository->reveal()))->provide()
         );
     }

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli;
 
 use Behat\Behat\Context\Context;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
-use Sylius\Component\Core\Formatter\StringInflector;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -19,7 +17,7 @@ final class CreateBoughtTogetherProductAssociationTypeContext implements Context
 
     private Application $application;
 
-    private ?CommandTester $commandTester = null;
+    private CommandTester $commandTester;
 
     public function __construct(KernelInterface $kernel)
     {
@@ -27,9 +25,9 @@ final class CreateBoughtTogetherProductAssociationTypeContext implements Context
     }
 
     /**
-     * @When I create a bought together product association type by running command
+     * @When I create the bought together product association type
      */
-    public function runCreateBoughtTogetherProductAssociationTypeCommand(): void
+    public function iCreateBoughtTogetherProductAssociationType(): void
     {
         $this->commandTester = new CommandTester($this->application->find(self::COMMAND_NAME));
         $this->commandTester->execute(['command' => self::COMMAND_NAME]);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli;
 
 use Behat\Behat\Context\Context;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use Sylius\Component\Core\Formatter\StringInflector;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -19,7 +19,7 @@ final class SynchronizeBoughtTogetherProductsContext implements Context
 
     private Application $application;
 
-    private ?CommandTester $commandTester = null;
+    private CommandTester $commandTester;
 
     public function __construct(KernelInterface $kernel)
     {
@@ -66,7 +66,7 @@ final class SynchronizeBoughtTogetherProductsContext implements Context
      * @Then the :product product should have usually been bought with :productName1, :productName2, :productName3 and :productName4
      * @Then the :product product should have usually been bought with :productName1, :productName2, :productName3, :productName4 and :productName5
      */
-    public function productShouldHaveUsuallyBeenBoughtWith(BroughtTogetherProductsAwareInterface $product, string ...$productNames): void
+    public function productShouldHaveUsuallyBeenBoughtWith(BoughtTogetherProductsAwareInterface $product, string ...$productNames): void
     {
         $expectedProductCodes = array_map(
             fn (string $productName) => StringInflector::nameToUppercaseCode($productName),
@@ -87,7 +87,7 @@ final class SynchronizeBoughtTogetherProductsContext implements Context
 
             Assert::count(
                 array_intersect($productCodesWithSameWeight, $expectedProductCodesWithSameWeight),
-                count($expectedProductCodesWithSameWeight)
+                count($expectedProductCodesWithSameWeight),
             );
         }
     }

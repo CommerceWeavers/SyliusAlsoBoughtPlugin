@@ -1,4 +1,4 @@
-commerce_weavers_sylius_also_bought_plugin:
+commerce_weavers_sylius_also_bought:
     missing_configuration_error_message:
         title: 'SyliusAlsoBoughtPlugin: manual action required'
         error_explanation: 'SyliusAlsoBoughtPlugin is installed, but the necessary product association type with code "bought_together" does not exist.'

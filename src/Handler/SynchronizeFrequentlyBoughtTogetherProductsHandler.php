@@ -31,7 +31,10 @@ final class SynchronizeFrequentlyBoughtTogetherProductsHandler
         $this->eventBus->dispatch(new SynchronizationStarted($synchronizationId, new \DateTimeImmutable()));
 
         $lastSynchronizationDate = $this->lastSynchronizationDateProvider->provide();
-        $synchronizationResult = $this->frequentlyBoughtTogetherProductsSynchronizer->synchronize($lastSynchronizationDate);
+
+        $synchronizationResult = $this->frequentlyBoughtTogetherProductsSynchronizer->synchronize(
+            $lastSynchronizationDate ?? (new \DateTimeImmutable())->setTimestamp(0)
+        );
 
         $event = new SynchronizationEnded(
             $synchronizationId,

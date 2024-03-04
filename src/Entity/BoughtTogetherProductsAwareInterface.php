@@ -6,7 +6,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Entity;
 
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 
-interface BroughtTogetherProductsAwareInterface
+interface BoughtTogetherProductsAwareInterface
 {
     public const BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE = 'bought_together';
 
@@ -15,5 +15,5 @@ interface BroughtTogetherProductsAwareInterface
 
     public function increaseBoughtTogetherProductsCount(array $codes): void;
 
-    public function getBroughtTogetherAssociation(): ?ProductAssociationInterface;
+    public function getBoughtTogetherAssociation(): ?ProductAssociationInterface;
 }

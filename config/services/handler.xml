@@ -18,7 +18,7 @@
         </service>
 
         <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizationEndedHandler">
-            <argument type="service" id="commerce_weavers_sylius_also_bought_plugin.repository.product_synchronization" />
+            <argument type="service" id="commerce_weavers_sylius_also_bought.repository.product_synchronization" />
             <tag name="messenger.message_handler" bus="sylius.event_bus" priority="10" />
         </service>
 

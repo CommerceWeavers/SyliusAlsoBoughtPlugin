@@ -2,7 +2,7 @@
 Feature: Synchronizing bought together products
     In order to have bought together products up to date
     As a Developer
-    I want to run a command that will synchronize bought together products with orders
+    I want to synchronize bought together products with orders
 
     Background:
         Given the store operates on a single channel in "United States"
@@ -10,22 +10,13 @@ Feature: Synchronizing bought together products
         And the store allows paying with "Cash on delivery"
 
     @cli
-    Scenario: Running bought together products command
+    Scenario: Synchronizing bought together products
         Given the store has a product association type "Bought together" with a code "bought_together"
-        And the store has a product "Weaver"
-        And the store has a product "Swan"
-        And the store has a product "Swift"
-        And the store has a product "Grains"
-        And the store has a product "Twigs"
-        And the store has a product "Bird feeder"
-        And the store has a product "Bird bath"
-        And the store has a product "Bird netting"
+        And the store has products "Weaver", "Swan", "Swift", "Grains", "Twigs", "Bird feeder", "Bird bath" and "Bird netting"
         And there is a customer "john.doe@example.com" that placed an order
-        And the customer bought a single "Weaver"
+        And the customer bought a single "Weaver", "Bird bath" and "Bird netting"
         And the customer bought 100 "Grains" products
         And the customer bought 500 "Twigs" products
-        And the customer bought a single "Bird bath"
-        And the customer bought a single "Bird netting"
         And the customer "John Doe" addressed it to "Elm Street", "90802" "Anytown" in the "United States" with identical billing address
         And the customer chose "Free" shipping method with "Cash on delivery" payment
         And this order is already paid
@@ -37,12 +28,9 @@ Feature: Synchronizing bought together products
         And the customer chose "Free" shipping method with "Cash on delivery" payment
         And this order is already paid
         And there is another customer "jane.doe@example.com" that placed an order
-        And the customer bought a single "Swift"
+        And the customer bought a single "Swift", "Bird feeder", "Bird bath" and "Bird netting"
         And the customer bought 100 "Grains" products
         And the customer bought 100 "Twigs" products
-        And the customer bought a single "Bird feeder"
-        And the customer bought a single "Bird bath"
-        And the customer bought a single "Bird netting"
         And the customer "Jane Doe" addressed it to "Elm Street", "90802" "Anytown" in the "United States" with identical billing address
         And the customer chose "Free" shipping method with "Cash on delivery" payment
         And this order is already paid
@@ -54,7 +42,7 @@ Feature: Synchronizing bought together products
         And the "Bird feeder" product should have usually been bought with "Grains", "Twigs", "Bird bath", "Bird netting" and "Swift"
 
     @cli
-    Scenario: The command requires bought together association type
+    Scenario: Being notified about specific association type requirement
         Given the store has a product "Weaver"
         And there is a customer "john.doe@example.com" that placed an order
         And the customer bought a single "Weaver"
@@ -63,4 +51,3 @@ Feature: Synchronizing bought together products
         And this order is already paid
         When I synchronize bought together products by running command
         Then I should be informed that bought together association type not found
-

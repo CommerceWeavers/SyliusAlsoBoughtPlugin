@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Checker;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Checker\BoughtTogetherProductAssociationTypeConfiguredChecker;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BroughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
@@ -21,7 +20,7 @@ final class BoughtTogetherProductAssociationTypeConfiguredCheckerTest extends Te
     {
         $productAssociationTypeRepository = $this->prophesize(ProductAssociationTypeRepositoryInterface::class);
         $productAssociationTypeRepository
-            ->findOneBy(['code' => BroughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE])
+            ->findOneBy(['code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE])
             ->willReturn(
                 $isConfigured
                     ? $this->prophesize(ProductAssociationTypeInterface::class)->reveal()
