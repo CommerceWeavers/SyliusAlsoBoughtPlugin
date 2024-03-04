@@ -13,12 +13,12 @@ final class LastSynchronizationDateProvider implements LastSynchronizationDatePr
     {
     }
 
-    public function provide(): \DateTimeInterface
+    public function provide(): ?\DateTimeInterface
     {
         $lastSynchronization = $this->productSynchronizationRepository->findLastSynchronization();
 
         if (null === $lastSynchronization) {
-            return (new \DateTimeImmutable())->setTimestamp(0);
+            return null;
         }
 
         $endDate = $lastSynchronization->getEndDate();
