@@ -1,5 +1,5 @@
 {
-    "name": "commerce-weavers/other-customers-also-bought-plugin",
+    "name": "commerce-weavers/sylius-also-bought-plugin",
     "type": "sylius-plugin",
     "description": "Commerce Weavers Sylius Also Bought Plugin",
     "keywords": [
@@ -45,6 +45,9 @@
         "symfony/intl": "^5.4 || ^6.0",
         "symfony/web-profiler-bundle": "^5.4 || ^6.0",
         "vimeo/psalm": "5.8.0"
+    },
+    "conflict": {
+        "behat/mink-selenium2-driver": ">=1.7.0"
     },
     "config": {
         "sort-packages": true,
