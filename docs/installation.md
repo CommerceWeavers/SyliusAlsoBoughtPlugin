@@ -21,21 +21,48 @@ CommerceWeavers\SyliusAlsoBoughtPlugin\CommerceWeaversSyliusAlsoBoughtPlugin::cl
 
 imports:
     - { resource: "@CommerceWeaversSyliusAlsoBoughtPlugin/config/app/config.yaml" }
+
+commerce_weavers_sylius_also_bought:
+    number_of_products_to_associate: 10 # default value
 ```
 
-### 4. Execute migrations
+### 4. Add trait to enhance Sylius Product model
+
+```php
+// src/Entity/Product/Product.php
+
+<?php
+
+declare(strict_types=1);
+
+namespace App\Entity\Product;
+
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Core\Model\Product as BaseProduct;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'sylius_product')]
+class Product extends BaseProduct implements BoughtTogetherProductsAwareInterface
+{
+    use BoughtTogetherProductsAwareTrait;
+}
+```
+
+### 5. Execute migrations
 
 ```
 bin/console doctrine:migrations:migrate -n
 ```
 
-### 5. Run setup command
+### 6. Run setup command
 
 ```
 bin/console sylius:also-bought:setup
 ```
 
-### 6. Synchronize bought together products
+### 7. Synchronize bought together products
 
 ```
 bin/console sylius:also-bought:synchronize
@@ -44,7 +71,7 @@ bin/console sylius:also-bought:synchronize
 Run this command periodically to keep the bought together products up to date.
 Use cron or any other scheduler to automate this process.
 
-### 7. Rebuild the cache
+### 8. Rebuild the cache
 
 ```bash
 bin/console cache:clear
