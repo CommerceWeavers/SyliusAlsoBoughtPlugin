@@ -1,5 +1,5 @@
 {
-    "name": "commerce-weavers/other-customers-also-bought-plugin",
+    "name": "commerce-weavers/sylius-also-bought-plugin",
     "type": "sylius-plugin",
     "description": "Commerce Weavers Sylius Also Bought Plugin",
     "keywords": [
