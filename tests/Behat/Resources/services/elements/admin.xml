@@ -7,5 +7,11 @@
             class="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Element\Admin\MissingConfigurationErrorMessageElement"
             parent="sylius.behat.element"
         />
+
+        <service
+            id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Element\Admin\ChannelFormElementInterface"
+            class="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Element\Admin\ChannelFormElement"
+            parent="sylius.behat.element"
+        />
     </services>
 </container>
