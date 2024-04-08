@@ -21,7 +21,7 @@ final class ChannelFormElement extends Element implements ChannelFormElementInte
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'number_of_synchronised_products_input' => 'input[name="sylius_channel[number_of_synchronised_products]"]',
+            'number_of_synchronised_products_input' => 'input[name="sylius_channel[numberOfSynchronisedProducts]"]',
         ]);
     }
 }
