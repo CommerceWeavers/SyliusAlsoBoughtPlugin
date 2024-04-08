@@ -31,6 +31,25 @@ final class ConfigurationTest extends TestCase
             'number_of_products_to_associate'
         );
     }
+    /** @test */
+    public function it_defines_batch_size_limit_by_default(): void
+    {
+        $this->assertProcessedConfigurationEquals(
+            [],
+            ['batch_size_limit' => 1000],
+            'batch_size_limit'
+        );
+    }
+
+    /** @test */
+    public function it_allows_to_define_batch_size_limit(): void
+    {
+        $this->assertProcessedConfigurationEquals(
+            [['batch_size_limit' => 5]],
+            ['batch_size_limit' => 5],
+            'batch_size_limit'
+        );
+    }
 
     protected function getConfiguration(): Configuration
     {

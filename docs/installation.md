@@ -24,6 +24,7 @@ imports:
 
 commerce_weavers_sylius_also_bought:
     number_of_products_to_associate: 10 # default value
+    batch_size_limit: 1000 # default value
 ```
 
 ### 4. Add trait to enhance Sylius Product model
