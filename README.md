@@ -17,7 +17,7 @@
 
 | Package       | Version |
 |---------------|---------|
-| PHP           | ^8.0    |
+| PHP           | ^8.1    |
 | sylius/sylius | ^1.12   |
 
 ### Overview
