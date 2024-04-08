@@ -29,13 +29,15 @@ final class PlacedOrdersProviderTest extends TestCase
 
         $orderRepository->createListQueryBuilder()->willReturn($queryBuilder->reveal())->shouldBeCalled();
         $queryBuilder->andWhere('o.checkoutCompletedAt >= :date')->willReturn($queryBuilder->reveal())->shouldBeCalled();
+        $queryBuilder->setMaxResults(10)->willReturn($queryBuilder->reveal())->shouldBeCalled();
+        $queryBuilder->setFirstResult(0)->willReturn($queryBuilder->reveal())->shouldBeCalled();
         $queryBuilder->setParameter('date', $since)->willReturn($queryBuilder->reveal())->shouldBeCalled();
         $queryBuilder->getQuery()->willReturn($query->reveal())->shouldBeCalled();
         $query->getResult()->willReturn([$firstOrder, $secondOrder]);
 
         self::assertSame(
             [$firstOrder, $secondOrder],
-            (new PlacedOrdersProvider($orderRepository->reveal()))->getSince($since)
+            (new PlacedOrdersProvider($orderRepository->reveal()))->getSince($since, 10, 0)
         );
     }
 }
