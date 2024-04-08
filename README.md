@@ -30,8 +30,8 @@ This plugin was sponsored by [Mofakult](https://www.mofakult.ch)
 and developed in cooperation with [Fusonic](https://www.fusonic.net).
 Thank you for your contribution to the open-source ecosystem!
 
-![WTG](docs/img/mofakult.svg)
-![WTG](docs/img/fusonic.png)
+[![Mofakult](docs/img/mofakult.svg)](https://mofakult.ch)
+[![Fusonic](docs/img/fusonic.png)](https://www.fusonic.net/)
 
 ### License
 
