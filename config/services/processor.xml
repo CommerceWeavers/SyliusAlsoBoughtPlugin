@@ -10,7 +10,6 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="sylius.repository.product" />
             <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProviderInterface" />
-            <argument>%commerce_weavers_sylius_also_bought.number_of_products_to_associate%</argument>
             <tag name="messenger.message_handler" bus="sylius.event_bus" priority="15" />
         </service>
     </services>

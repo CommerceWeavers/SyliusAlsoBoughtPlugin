@@ -7,6 +7,7 @@ namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Processor;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Processor\BoughtTogetherProductsAssociationProcessor;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProviderInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\SynchronizableProductsNumberProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -24,12 +25,13 @@ final class BoughtTogetherProductsAssociationProcessorTest extends TestCase
         $entityManager = $this->prophesize(EntityManagerInterface::class);
         $productRepository = $this->prophesize(ProductRepositoryInterface::class);
         $boughtTogetherProductsAssociationProvider = $this->prophesize(BoughtTogetherProductsAssociationProviderInterface::class);
+        $numberOfSynchronizableProductsProvider = $this->prophesize(SynchronizableProductsNumberProviderInterface::class);
 
         $processor = new BoughtTogetherProductsAssociationProcessor(
             $entityManager->reveal(),
             $productRepository->reveal(),
             $boughtTogetherProductsAssociationProvider->reveal(),
-            5
+            $numberOfSynchronizableProductsProvider->reveal(),
         );
 
         $product = $this->prophesize(Product::class);
@@ -37,6 +39,8 @@ final class BoughtTogetherProductsAssociationProcessorTest extends TestCase
 
         $boughtTogetherProductsAssociationProvider->getForProduct($product->reveal())->willReturn($productAssociation);
         $product->getBoughtTogetherProducts()->willReturn(['12345' => 2, '500' => 1]);
+
+        $numberOfSynchronizableProductsProvider->getNumberOfProductsToSynchronise($product->reveal())->willReturn(10);
 
         $firstAssociatedProduct = new Product();
         $firstAssociatedProduct->setCode('12345');

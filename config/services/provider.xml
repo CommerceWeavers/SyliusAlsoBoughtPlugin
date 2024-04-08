@@ -27,5 +27,12 @@
         >
             <argument type="service" id="sylius.repository.order" />
         </service>
+
+        <service
+            id="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\SynchronizableProductsNumberProviderInterface"
+            class="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\SynchronizableProductsNumberProvider"
+        >
+            <argument>%commerce_weavers_sylius_also_bought.number_of_products_to_associate%</argument>
+        </service>
     </services>
 </container>
