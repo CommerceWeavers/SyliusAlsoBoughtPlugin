@@ -46,7 +46,6 @@ final class Configuration implements ConfigurationInterface
                         ->arrayNode('product_synchronization')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->variableNode('options')->end()
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
