@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Provider;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM\ProductSynchronizationRepositoryInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Repository\ProductSynchronizationRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 final class LastSynchronizationDateProvider implements LastSynchronizationDateProviderInterface

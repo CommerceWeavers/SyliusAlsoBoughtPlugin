@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronizationInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Repository\ProductSynchronizationRepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 final class ProductSynchronizationRepository extends EntityRepository implements ProductSynchronizationRepositoryInterface
