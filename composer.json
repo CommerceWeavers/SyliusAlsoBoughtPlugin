@@ -45,7 +45,7 @@
         "symfony/flex": "^2.2.2",
         "symfony/intl": "^5.4 || ^6.0",
         "symfony/web-profiler-bundle": "^5.4 || ^6.0",
-        "vimeo/psalm": "5.23.1"
+        "vimeo/psalm": "5.24.0"
     },
     "conflict": {
         "behat/mink-selenium2-driver": ">=1.7.0"
