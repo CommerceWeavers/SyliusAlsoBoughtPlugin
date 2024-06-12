@@ -62,7 +62,7 @@ $bundles = [
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
 ];
 
-if (SyliusCoreBundle::VERSION_ID >= 13000) {
+if (SyliusCoreBundle::VERSION_ID >= 11300) {
     $bundles[Sylius\Abstraction\StateMachine\SyliusStateMachineAbstractionBundle::class] = ['all' => true];
 }
 
