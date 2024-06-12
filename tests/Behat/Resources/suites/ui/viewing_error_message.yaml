@@ -5,6 +5,7 @@ default:
                 - sylius.behat.context.hook.doctrine_orm
 
                 - sylius.behat.context.transform.address
+                - sylius.behat.context.transform.channel
                 - sylius.behat.context.transform.customer
                 - sylius.behat.context.transform.payment
                 - sylius.behat.context.transform.product
@@ -20,6 +21,7 @@ default:
                 - sylius.behat.context.setup.shipping
 
                 - sylius.behat.context.ui.admin.dashboard
+                - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Ui\Admin\DashboardContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Ui\Admin\MissingConfigurationErrorMessageContext
 
             filters:

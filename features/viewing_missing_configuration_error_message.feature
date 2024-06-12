@@ -10,11 +10,11 @@ Feature: Viewing missing configuration error message
 
     @ui
     Scenario: Viewing error message when there is no bought together product association type
-        When I open administration dashboard for "Web" channel
+        When I open the "Web" channel dashboard
         Then I should see the error message about missing configuration
 
     @ui
     Scenario: Not viewing error message when there is bought together product association type
         Given the store has a product association type "Bought together" with a code "bought_together"
-        When I open administration dashboard for "Web" channel
+        When I open the "Web" channel dashboard
         Then I should not see the error message about missing configuration

@@ -26,7 +26,7 @@ final class ProductContext implements Context
     }
 
     /**
-     * @Then /^I should not see the product association "([^"]+)" with (product "[^"]+")$/
+     * @Then /^I should not be able to see the product association "([^"]+)" with (product "[^"]+")$/
      */
     public function iShouldNotSeeTheProductAssociationWithProduct(string $productAssociationName, ProductInterface $associatedProduct): void
     {
@@ -48,9 +48,9 @@ final class ProductContext implements Context
     }
 
     /**
-     * @Then I should not see the product association :productAssociationName
+     * @Then I should not be able to see the product association :productAssociationName
      */
-    public function iShouldNotSeeTheProductAssociation(string $productAssociationName): void
+    public function iShouldNotBeAbleToSeeTheProductAssociation(string $productAssociationName): void
     {
         /** @var ProductInterface $product */
         $product = $this->sharedStorage->get('product');

@@ -23,6 +23,7 @@ default:
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\SynchronizeBoughtTogetherProductsContext
 
                 - sylius.behat.context.api.shop.product
+                - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Api\DashboardContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Api\ProductContext
 
             filters:
