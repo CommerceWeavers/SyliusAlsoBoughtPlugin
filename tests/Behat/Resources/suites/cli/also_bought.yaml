@@ -3,17 +3,18 @@ default:
         cli_also_bought:
             contexts:
                 - sylius.behat.context.hook.doctrine_orm
-                    
+
                 - sylius.behat.context.setup.channel
                 - sylius.behat.context.setup.geographical
                 - sylius.behat.context.setup.order
                 - sylius.behat.context.setup.payment
                 - sylius.behat.context.setup.product
-                - sylius.behat.context.setup.product_association  
+                - sylius.behat.context.setup.product_association
                 - sylius.behat.context.setup.shipping
+                - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\ChannelContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\OrderContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\ProductContext
-                
+
                 - sylius.behat.context.transform.address
                 - sylius.behat.context.transform.channel
                 - sylius.behat.context.transform.customer
@@ -22,7 +23,7 @@ default:
                 - sylius.behat.context.transform.shared_storage
                 - sylius.behat.context.transform.shipping_method
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Transform\ProductContext
-                    
+
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\CreateBoughtTogetherProductAssociationTypeContext
                 - Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\SynchronizeBoughtTogetherProductsContext
             filters:

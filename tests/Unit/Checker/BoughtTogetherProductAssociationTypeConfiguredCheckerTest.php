@@ -33,7 +33,7 @@ final class BoughtTogetherProductAssociationTypeConfiguredCheckerTest extends Te
         self::assertSame($isConfigured, $checker->isConfigured());
     }
 
-    public function isConfiguredDataProvider(): array
+    public static function isConfiguredDataProvider(): array
     {
         return [
             'association type is configured' => [

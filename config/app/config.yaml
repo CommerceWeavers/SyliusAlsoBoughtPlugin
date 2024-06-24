@@ -5,3 +5,8 @@ sylius_ui:
                 commerce_weavers_sylius_also_bought_missing_configuration:
                     template: '@CommerceWeaversSyliusAlsoBoughtPlugin/_missing_configuration.html.twig'
                     priority: 40
+        sylius.admin.channel.form.second_column_content:
+            blocks:
+                commerce_weavers_sylius_also_bought_number_of_synchronised_products:
+                    template: '@CommerceWeaversSyliusAlsoBoughtPlugin/Admin/Channel/Form/numberOfSynchronisedProducts.html.twig'
+                    priority: 0

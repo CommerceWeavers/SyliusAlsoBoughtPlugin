@@ -7,6 +7,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Processor;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProviderInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\SynchronizableProductsNumberProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
@@ -20,7 +21,7 @@ final class BoughtTogetherProductsAssociationProcessor
         private EntityManagerInterface $entityManager,
         private ProductRepositoryInterface $productRepository,
         private BoughtTogetherProductsAssociationProviderInterface $boughtTogetherProductsAssociationProvider,
-        private int $numberOfProductsToAssociate = 10,
+        private SynchronizableProductsNumberProviderInterface $synchronizableProductsNumberProvider,
     ) {
     }
 
@@ -32,7 +33,12 @@ final class BoughtTogetherProductsAssociationProcessor
         Assert::allIsInstanceOf($products, BoughtTogetherProductsAwareInterface::class);
 
         foreach ($products as $product) {
-            $boughtTogetherProducts = array_slice($product->getBoughtTogetherProducts(), 0, $this->numberOfProductsToAssociate - 1, true);
+            $boughtTogetherProducts = array_slice(
+                $product->getBoughtTogetherProducts(),
+                0,
+                $this->synchronizableProductsNumberProvider->getNumberOfProductsToSynchronise($product) - 1,
+                true,
+            );
             $boughtTogetherAssociation = $this->boughtTogetherProductsAssociationProvider->getForProduct($product);
             $this->entityManager->persist($boughtTogetherAssociation);
 

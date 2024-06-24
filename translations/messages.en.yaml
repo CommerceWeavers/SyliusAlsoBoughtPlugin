@@ -1,4 +1,7 @@
 commerce_weavers_sylius_also_bought:
+    form:
+        channel:
+            number_of_synchronised_products: 'Number of synchronised products'
     missing_configuration_error_message:
         title: 'SyliusAlsoBoughtPlugin: manual action required'
         error_explanation: 'SyliusAlsoBoughtPlugin is installed, but the necessary product association type with code "bought_together" does not exist.'

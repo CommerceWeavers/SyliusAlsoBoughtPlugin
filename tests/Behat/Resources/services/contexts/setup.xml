@@ -15,5 +15,9 @@
         <service id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\SynchronizeBoughtTogetherProductsContext">
             <argument type="service" id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Cli\SynchronizeBoughtTogetherProductsContext" />
         </service>
+
+        <service id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Setup\ChannelContext">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
     </services>
 </container>
