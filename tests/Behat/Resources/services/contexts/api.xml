@@ -10,7 +10,5 @@
             <argument type="service" id="Sylius\Behat\Client\ResponseCheckerInterface" />
             <argument type="service" id="api_platform.iri_converter" />
         </service>
-
-        <service id="Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Behat\Context\Api\DashboardContext" />
     </services>
 </container>
