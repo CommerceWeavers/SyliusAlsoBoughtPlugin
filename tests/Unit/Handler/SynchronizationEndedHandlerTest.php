@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Handler;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\ORM\ProductSynchronizationRepositoryInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronization;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Handler\SynchronizationEndedHandler;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Repository\ProductSynchronizationRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Uid\Uuid;
