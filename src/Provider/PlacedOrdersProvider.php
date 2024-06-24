@@ -13,13 +13,15 @@ final class PlacedOrdersProvider implements PlacedOrdersProviderInterface
     {
     }
 
-    public function getSince(\DateTimeInterface $since): array
+    public function getSince(\DateTimeInterface $since, int $limit, int $offset): array
     {
         /** @var OrderInterface[] $result */
         $result = $this->orderRepository
             ->createListQueryBuilder()
             ->andWhere('o.checkoutCompletedAt >= :date')
             ->setParameter('date', $since)
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
             ->getQuery()
             ->getResult()
         ;

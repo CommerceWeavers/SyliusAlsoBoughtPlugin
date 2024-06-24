@@ -42,6 +42,11 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
             $config['number_of_products_to_associate'],
         );
 
+        $container->setParameter(
+            'commerce_weavers_sylius_also_bought.batch_size_limit',
+            $config['batch_size_limit'],
+        );
+
         $this->prependDoctrineMigrations($container);
         $this->prependDoctrineMapping($container);
     }

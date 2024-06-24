@@ -13,6 +13,7 @@
             <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\PlacedOrdersProviderInterface" />
             <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Mapper\BoughtTogetherProductsMapperInterface" />
             <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Saver\BoughtTogetherProductsInfoSaverInterface" />
+            <argument>%commerce_weavers_sylius_also_bought.batch_size_limit%</argument>
         </service>
     </services>
 </container>

@@ -9,5 +9,5 @@ use Sylius\Component\Core\Model\OrderInterface;
 interface PlacedOrdersProviderInterface
 {
     /** @return OrderInterface[] */
-    public function getSince(\DateTimeInterface $since): array;
+    public function getSince(\DateTimeInterface $since, int $limit, int $offset): array;
 }

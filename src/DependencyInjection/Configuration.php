@@ -32,6 +32,7 @@ final class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->integerNode('number_of_products_to_associate')->defaultValue(10)->end()
+                ->integerNode('batch_size_limit')->defaultValue(1000)->end()
             ->end()
         ;
     }

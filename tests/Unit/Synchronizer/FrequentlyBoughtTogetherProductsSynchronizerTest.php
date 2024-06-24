@@ -25,27 +25,41 @@ final class FrequentlyBoughtTogetherProductsSynchronizerTest extends TestCase
 
         $firstOrder = new Order();
         $secondOrder = new Order();
+        $thirdOrder = new Order();
 
         $synchronizer = new FrequentlyBoughtTogetherProductsSynchronizer(
             $placedOrdersProvider->reveal(),
             $productsMapper->reveal(),
             $boughtTogetherProductsInfoSaver->reveal(),
+            2,
         );
 
         $placedOrdersProvider
-            ->getSince(new \DateTimeImmutable('2020-01-01'))
+            ->getSince(new \DateTimeImmutable('2020-01-01'), 2, 0)
             ->willReturn([$firstOrder, $secondOrder])
+        ;
+
+        $placedOrdersProvider
+            ->getSince(new \DateTimeImmutable('2020-01-01'), 2, 2)
+            ->willReturn([$thirdOrder])
+        ;
+
+        $placedOrdersProvider
+            ->getSince(new \DateTimeImmutable('2020-01-01'), 2, 4)
+            ->willReturn([])
         ;
 
         $productsMapper->map($firstOrder)->willReturn(['P10273' => ['P12182', 'P12183'], 'P12182' => ['P10273', 'P12183'], 'P12183' => ['P10273', 'P12182']]);
         $productsMapper->map($secondOrder)->willReturn(['P12182' => ['P10273'], 'P10273' => ['P12182']]);
+        $productsMapper->map($thirdOrder)->willReturn(['P13757' => ['P10273']]);
 
         $boughtTogetherProductsInfoSaver->save('P10273', ['P12182', 'P12183', 'P12182'])->shouldBeCalled();
         $boughtTogetherProductsInfoSaver->save('P12182', ['P10273', 'P12183', 'P10273'])->shouldBeCalled();
         $boughtTogetherProductsInfoSaver->save('P12183', ['P10273', 'P12182'])->shouldBeCalled();
+        $boughtTogetherProductsInfoSaver->save('P13757', ['P10273'])->shouldBeCalled();
 
         self::assertEquals(
-            new SynchronizationResult(2, ['P10273', 'P12182', 'P12183']),
+            new SynchronizationResult(3, ['P10273', 'P12182', 'P12183', 'P13757']),
             $synchronizer->synchronize(new \DateTimeImmutable('2020-01-01')),
         );
     }
