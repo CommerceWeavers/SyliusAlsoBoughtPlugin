@@ -21,9 +21,9 @@ Feature: Viewing bought together product's associations
     Scenario: Viewing a detailed page with bought together products
         When I view product "Bird bath"
         Then I should see the product association "Bought together" with products "Weaver" and "Swift"
-        And I should not see the product association "Bought together" with product "Swan"
+        And I should not be able to see the product association "Bought together" with product "Swan"
 
     @api @ui
     Scenario: Viewing a detailed page without bought together products
         When I view product "Swan"
-        Then I should not see the product association "Bought together"
+        Then I should not be able to see the product association "Bought together"

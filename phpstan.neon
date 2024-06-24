@@ -16,3 +16,4 @@ parameters:
 
     ignoreErrors:
         - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+        - '#Method [\w\\\(\)\:]+ has parameter \$[\w]+ with generic interface [\w\\]+RepositoryInterface but does not specify its types: T#' # Sylius 1.13 defines generic types for repositories, but 1.12 does not; so it throws an error anyway
