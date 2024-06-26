@@ -6,7 +6,6 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer;
 
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
-use Sylius\Component\Product\Model\ProductAssociation;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -19,7 +18,15 @@ final class ProductNormalizer implements ContextAwareNormalizerInterface, Normal
         private NormalizerInterface $decoratedNormalizer,
         private ItemDataProviderInterface $itemDataProvider,
         private IriToIdentifierConverterInterface $iriToIdentifierConverter,
+        private string $productAssociationClass,
     ) {
+        if (!is_a($productAssociationClass, ProductAssociationInterface::class, true)) {
+            throw new \InvalidArgumentException(sprintf(
+                'The class "%s" must implement "%s".',
+                $productAssociationClass,
+                ProductAssociationInterface::class,
+            ));
+        }
     }
 
     public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
@@ -39,7 +46,7 @@ final class ProductNormalizer implements ContextAwareNormalizerInterface, Normal
         foreach ($associations as $association) {
             $id = $this->iriToIdentifierConverter->getIdentifier($association);
             /** @var ProductAssociationInterface $associationObject */
-            $associationObject = $this->itemDataProvider->getItem(ProductAssociation::class, (string) $id);
+            $associationObject = $this->itemDataProvider->getItem($this->productAssociationClass, (string) $id);
             $associationTypeCode = $associationObject->getType()?->getCode();
 
             if (null === $associationTypeCode) {
