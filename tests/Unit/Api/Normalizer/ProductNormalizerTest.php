@@ -20,6 +20,21 @@ final class ProductNormalizerTest extends TestCase
 {
     use ProphecyTrait;
 
+    private string $productAssociationClass = ProductAssociation::class;
+
+    public function testItThrowsInvalidArgumentExceptionWhenProductAssociationClassDoesNotImplementProductAssociationInterface(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The class "stdClass" must implement "Sylius\Component\Product\Model\ProductAssociationInterface".');
+
+        new ProductNormalizer(
+            $this->prophesize(ContextAwareNormalizerInterface::class)->reveal(),
+            $this->prophesize(ItemDataProviderInterface::class)->reveal(),
+            $this->prophesize(IriToIdentifierConverterInterface::class)->reveal(),
+            \stdClass::class,
+        );
+    }
+
     public function testItAddsAssociationsTypesToProductResponse(): void
     {
         $baseNormalizer = $this->prophesize(ProductNormalizerInterface::class);
@@ -29,7 +44,8 @@ final class ProductNormalizerTest extends TestCase
         $normalizer = new ProductNormalizer(
             $baseNormalizer->reveal(),
             $itemDataProvider->reveal(),
-            $iriToIdentifierConverter->reveal()
+            $iriToIdentifierConverter->reveal(),
+            $this->productAssociationClass,
         );
 
         $product = $this->prophesize(Product::class);
@@ -52,9 +68,9 @@ final class ProductNormalizerTest extends TestCase
         $secondAssociationType->getCode()->willReturn('second_association_type');
 
         $iriToIdentifierConverter->getIdentifier('/api/v2/product-associations/1')->willReturn('1');
-        $itemDataProvider->getItem(ProductAssociation::class, '1')->willReturn($firstAssociation);
+        $itemDataProvider->getItem($this->productAssociationClass, '1')->willReturn($firstAssociation);
         $iriToIdentifierConverter->getIdentifier('/api/v2/product-associations/2')->willReturn('2');
-        $itemDataProvider->getItem(ProductAssociation::class, '2')->willReturn($secondAssociation);
+        $itemDataProvider->getItem($this->productAssociationClass, '2')->willReturn($secondAssociation);
 
         self::assertSame(
             [
