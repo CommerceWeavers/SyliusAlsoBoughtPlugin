@@ -18,7 +18,6 @@ final class CommerceWeaversSyliusAlsoBoughtExtension extends AbstractResourceExt
 
     private const ALIAS = 'commerce_weavers_sylius_also_bought';
 
-    /** @psalm-suppress UnusedVariable */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));

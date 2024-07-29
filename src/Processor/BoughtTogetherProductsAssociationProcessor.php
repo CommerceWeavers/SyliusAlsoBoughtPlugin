@@ -7,6 +7,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Processor;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Event\SynchronizationEnded;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\BoughtTogetherProductsAssociationProviderInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\SynchronizableProductsNumberProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Repository\ProductRepositoryInterface;
@@ -20,7 +21,8 @@ final class BoughtTogetherProductsAssociationProcessor
         private EntityManagerInterface $entityManager,
         private ProductRepositoryInterface $productRepository,
         private BoughtTogetherProductsAssociationProviderInterface $boughtTogetherProductsAssociationProvider,
-        private int $numberOfProductsToAssociate = 10,
+        private SynchronizableProductsNumberProviderInterface $synchronizableProductsNumberProvider,
+        private int $batchSize = 100,
     ) {
     }
 
@@ -31,8 +33,14 @@ final class BoughtTogetherProductsAssociationProcessor
 
         Assert::allIsInstanceOf($products, BoughtTogetherProductsAwareInterface::class);
 
+        $batch = 0;
         foreach ($products as $product) {
-            $boughtTogetherProducts = array_slice($product->getBoughtTogetherProducts(), 0, $this->numberOfProductsToAssociate - 1, true);
+            $boughtTogetherProducts = array_slice(
+                $product->getBoughtTogetherProducts(),
+                0,
+                $this->synchronizableProductsNumberProvider->getNumberOfProductsToSynchronise($product) - 1,
+                true,
+            );
             $boughtTogetherAssociation = $this->boughtTogetherProductsAssociationProvider->getForProduct($product);
             $this->entityManager->persist($boughtTogetherAssociation);
 
@@ -42,14 +50,17 @@ final class BoughtTogetherProductsAssociationProcessor
             foreach ($frequentlyBoughtTogetherProducts as $frequentlyBoughtTogetherProduct) {
                 $boughtTogetherAssociation->addAssociatedProduct($frequentlyBoughtTogetherProduct);
             }
+
+            if (++$batch >= $this->batchSize) {
+                $this->entityManager->flush();
+                $batch = 0;
+            }
         }
 
         $this->entityManager->flush();
     }
 
-    /**
-     * @return ProductInterface[]
-     */
+    /** @return ProductInterface[] */
     private function findProductsByCodes(array $codes): array
     {
         /** @var ProductInterface[] $products */
