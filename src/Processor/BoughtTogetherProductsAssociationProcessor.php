@@ -22,6 +22,7 @@ final class BoughtTogetherProductsAssociationProcessor
         private ProductRepositoryInterface $productRepository,
         private BoughtTogetherProductsAssociationProviderInterface $boughtTogetherProductsAssociationProvider,
         private SynchronizableProductsNumberProviderInterface $synchronizableProductsNumberProvider,
+        private int $batchSize = 100,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class BoughtTogetherProductsAssociationProcessor
 
         Assert::allIsInstanceOf($products, BoughtTogetherProductsAwareInterface::class);
 
+        $batch = 0;
         foreach ($products as $product) {
             $boughtTogetherProducts = array_slice(
                 $product->getBoughtTogetherProducts(),
@@ -48,14 +50,17 @@ final class BoughtTogetherProductsAssociationProcessor
             foreach ($frequentlyBoughtTogetherProducts as $frequentlyBoughtTogetherProduct) {
                 $boughtTogetherAssociation->addAssociatedProduct($frequentlyBoughtTogetherProduct);
             }
+
+            if (++$batch >= $this->batchSize) {
+                $this->entityManager->flush();
+                $batch = 0;
+            }
         }
 
         $this->entityManager->flush();
     }
 
-    /**
-     * @return ProductInterface[]
-     */
+    /** @return ProductInterface[] */
     private function findProductsByCodes(array $codes): array
     {
         /** @var ProductInterface[] $products */

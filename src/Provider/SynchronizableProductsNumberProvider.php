@@ -23,7 +23,7 @@ final class SynchronizableProductsNumberProvider implements SynchronizableProduc
             $numberOfProducts = max($numberOfProducts, $channel->getNumberOfSynchronisedProducts());
         }
 
-        if ($numberOfProducts === 0) {
+        if ($numberOfProducts <= 0) {
             return $this->defaultNumberOfProducts;
         }
 

@@ -1,5 +1,5 @@
 @managing_channels
-Feature: Managing number of items on channel
+Feature: Managing number of items to synchronize on channel
     In order to change the number of items that are synchronised as bought together products
     As an Administrator
     I want to be able to edit their number on channel configuration
