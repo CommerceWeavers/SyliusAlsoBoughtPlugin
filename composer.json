@@ -44,8 +44,7 @@
         "symfony/dotenv": "^5.4 || ^6.0",
         "symfony/flex": "^2.2.2",
         "symfony/intl": "^5.4 || ^6.0",
-        "symfony/web-profiler-bundle": "^5.4 || ^6.0",
-        "vimeo/psalm": "5.25.0"
+        "symfony/web-profiler-bundle": "^5.4 || ^6.0"
     },
     "conflict": {
         "behat/mink-selenium2-driver": ">=1.7.0"
@@ -94,6 +93,15 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "security-checker security:check": "script"
-        }
+        },
+        "analyse": [
+            "composer validate --ansi --strict",
+            "vendor/bin/phpstan analyse -c phpstan.neon -l max src/"
+        ],
+        "test": [
+            "vendor/bin/phpspec run --ansi -f progress --no-interaction",
+            "vendor/bin/phpunit --colors=always",
+            "vendor/bin/behat --colors --strict -vvv --no-interaction || vendor/bin/behat --colors --strict -vvv --no-interaction --rerun"
+        ]
     }
 }
