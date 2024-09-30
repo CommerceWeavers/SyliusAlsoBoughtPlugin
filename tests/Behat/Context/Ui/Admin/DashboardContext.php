@@ -10,7 +10,7 @@ use Sylius\Component\Core\Model\ChannelInterface;
 
 final class DashboardContext implements Context
 {
-    public function __construct (
+    public function __construct(
         private readonly DashboardPageInterface $dashboardPage,
     ) {
     }

@@ -7,7 +7,6 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Repository;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\ProductSynchronizationInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
-/** @extends RepositoryInterface<ProductSynchronizationInterface> */
 interface ProductSynchronizationRepositoryInterface extends RepositoryInterface
 {
     public function findLastSynchronization(): ?ProductSynchronizationInterface;

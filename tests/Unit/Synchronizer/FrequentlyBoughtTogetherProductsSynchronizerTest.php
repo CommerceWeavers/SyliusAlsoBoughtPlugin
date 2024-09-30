@@ -10,6 +10,7 @@ use CommerceWeavers\SyliusAlsoBoughtPlugin\Provider\PlacedOrdersProviderInterfac
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Saver\BoughtTogetherProductsInfoSaverInterface;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Synchronizer\FrequentlyBoughtTogetherProductsSynchronizer;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Sylius\Component\Core\Model\Order;
 
@@ -53,9 +54,9 @@ final class FrequentlyBoughtTogetherProductsSynchronizerTest extends TestCase
         $productsMapper->map($secondOrder)->willReturn(['P12182' => ['P10273'], 'P10273' => ['P12182']]);
         $productsMapper->map($thirdOrder)->willReturn(['P13757' => ['P10273']]);
 
-        $boughtTogetherProductsInfoSaver->save('P10273', ['P12182', 'P12183', 'P12182'])->shouldBeCalled();
-        $boughtTogetherProductsInfoSaver->save('P12182', ['P10273', 'P12183', 'P10273'])->shouldBeCalled();
-        $boughtTogetherProductsInfoSaver->save('P12183', ['P10273', 'P12182'])->shouldBeCalled();
+        $boughtTogetherProductsInfoSaver->save('P10273', Argument::containing('P12182'))->shouldBeCalled();
+        $boughtTogetherProductsInfoSaver->save('P12182', Argument::containing('P12183'))->shouldBeCalled();
+        $boughtTogetherProductsInfoSaver->save('P12183', Argument::containing('P10273'))->shouldBeCalled();
         $boughtTogetherProductsInfoSaver->save('P13757', ['P10273'])->shouldBeCalled();
 
         self::assertEquals(

@@ -8,7 +8,9 @@ use CommerceWeavers\SyliusAlsoBoughtPlugin\Entity\BoughtTogetherProductsAwareInt
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\BoughtTogetherAssociationTypeNotFoundException;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductAssociation;
+use Sylius\Component\Product\Model\ProductAssociationInterface;
 use Sylius\Component\Product\Model\ProductAssociationType;
+use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Webmozart\Assert\Assert;
@@ -16,16 +18,16 @@ use Webmozart\Assert\Assert;
 final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherProductsAssociationProviderInterface
 {
     /**
-     * @param FactoryInterface<ProductAssociation> $productAssociationFactory
-     * @param RepositoryInterface<ProductAssociationType> $productAssociationTypeRepository
+     * @implements FactoryInterface<ProductAssociation> $productAssociationFactory
+     * @implements RepositoryInterface<ProductAssociationType> $productAssociationTypeRepository
      */
     public function __construct(
-        private FactoryInterface $productAssociationFactory,
-        private RepositoryInterface $productAssociationTypeRepository,
+        private readonly FactoryInterface $productAssociationFactory,
+        private readonly RepositoryInterface $productAssociationTypeRepository,
     ) {
     }
 
-    public function getForProduct(ProductInterface $product): ProductAssociation
+    public function getForProduct(ProductInterface $product): ProductAssociationInterface
     {
         Assert::isInstanceOf($product, BoughtTogetherProductsAwareInterface::class);
 
@@ -36,6 +38,7 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
             return $productAssociation;
         }
 
+        /** @var ProductAssociationTypeInterface|null $productAssociationType */
         $productAssociationType = $this->productAssociationTypeRepository->findOneBy([
             'code' => BoughtTogetherProductsAwareInterface::BOUGHT_TOGETHER_ASSOCIATION_TYPE_CODE,
         ]);
@@ -44,6 +47,7 @@ final class BoughtTogetherProductsAssociationProvider implements BoughtTogetherP
             throw new BoughtTogetherAssociationTypeNotFoundException();
         }
 
+        /** @var ProductAssociationInterface $productAssociation */
         $productAssociation = $this->productAssociationFactory->createNew();
         $productAssociation->setType($productAssociationType);
         $product->addAssociation($productAssociation);
