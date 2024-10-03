@@ -10,7 +10,7 @@ final class ChannelFormElement extends Element implements ChannelFormElementInte
 {
     public function changeNumberOfSynchronisedProducts(int $number): void
     {
-        $this->getElement('number_of_synchronised_products_input')->setValue($number);
+        $this->getElement('number_of_synchronised_products_input')->setValue((string) $number);
     }
 
     public function getNumberOfSynchronisedProducts(): int

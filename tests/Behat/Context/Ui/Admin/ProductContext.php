@@ -10,7 +10,7 @@ use Sylius\Component\Core\Model\ProductInterface;
 
 final class ProductContext implements Context
 {
-    public function __construct (
+    public function __construct(
         private readonly BaseProductContext $productContext,
     ) {
     }

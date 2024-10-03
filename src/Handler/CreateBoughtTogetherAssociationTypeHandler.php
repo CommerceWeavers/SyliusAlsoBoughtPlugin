@@ -15,11 +15,11 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 final class CreateBoughtTogetherAssociationTypeHandler
 {
     /**
-     * @param FactoryInterface<ProductAssociationTypeInterface> $productAssociationTypeFactory
+     * @implements FactoryInterface<ProductAssociationTypeInterface> $productAssociationTypeFactory
      */
     public function __construct(
-        private FactoryInterface $productAssociationTypeFactory,
-        private ProductAssociationTypeRepositoryInterface $productAssociationTypeRepository,
+        private readonly FactoryInterface $productAssociationTypeFactory,
+        private readonly ProductAssociationTypeRepositoryInterface $productAssociationTypeRepository,
     ) {
     }
 
