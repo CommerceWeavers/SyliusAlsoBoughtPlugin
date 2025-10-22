@@ -18,6 +18,7 @@ final class GetAssociationTypeCodeByAssociationIdQuery implements GetAssociation
     {
         $queryBuilder = $this->productAssociationManager->createQueryBuilder();
 
+        /** @var string|null $result */
         $result = $queryBuilder
             ->select('t.code')
             ->from($this->productAssociationClass, 'pa')
@@ -25,9 +26,9 @@ final class GetAssociationTypeCodeByAssociationIdQuery implements GetAssociation
             ->where('pa.id = :associationId')
             ->setParameter('associationId', $associationId)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getSingleScalarResult()
         ;
 
-        return $result['code'] ?? null;
+        return $result;
     }
 }
