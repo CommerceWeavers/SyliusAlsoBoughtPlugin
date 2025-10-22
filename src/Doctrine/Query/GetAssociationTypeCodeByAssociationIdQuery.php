@@ -6,7 +6,7 @@ namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-final class GetAssociationTypeCodeByAssociationIdQuery
+final class GetAssociationTypeCodeByAssociationIdQuery implements GetAssociationTypeCodeByAssociationIdQueryInterface
 {
     public function __construct(
         private EntityManagerInterface $productAssociationManager,

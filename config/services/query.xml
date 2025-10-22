@@ -10,5 +10,7 @@
             <argument type="service" id="sylius.manager.product_association" />
             <argument type="string">%sylius.model.product_association.class%</argument>
         </service>
+
+        <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface" alias="CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQuery" />
     </services>
 </container>

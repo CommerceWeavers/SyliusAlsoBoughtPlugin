@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer;
 
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQuery;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -15,7 +15,7 @@ final class ProductNormalizer implements ContextAwareNormalizerInterface, Normal
     /** @param ContextAwareNormalizerInterface&NormalizerAwareInterface $decoratedNormalizer */
     public function __construct(
         private NormalizerInterface $decoratedNormalizer,
-        private GetAssociationTypeCodeByAssociationIdQuery $getAssociationTypeCodeByAssociationIdQuery,
+        private GetAssociationTypeCodeByAssociationIdQueryInterface $getAssociationTypeCodeByAssociationIdQuery,
         private IriToIdentifierConverterInterface $iriToIdentifierConverter,
     ) {
     }

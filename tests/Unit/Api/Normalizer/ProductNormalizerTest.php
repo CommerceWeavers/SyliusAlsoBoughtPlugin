@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Api\Normalizer;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer\ProductNormalizer;
-use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQuery;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
@@ -20,7 +20,7 @@ final class ProductNormalizerTest extends TestCase
     public function testItAddsAssociationsTypesToProductResponse(): void
     {
         $baseNormalizer = $this->prophesize(ProductNormalizerInterface::class);
-        $query = $this->prophesize(GetAssociationTypeCodeByAssociationIdQuery::class);
+        $query = $this->prophesize(GetAssociationTypeCodeByAssociationIdQueryInterface::class);
         $iriToIdentifierConverter = $this->prophesize(IriToIdentifierConverterInterface::class);
 
         $normalizer = new ProductNormalizer(
