@@ -6,6 +6,7 @@ namespace Tests\CommerceWeavers\SyliusAlsoBoughtPlugin\Unit\Api\Normalizer;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer\ProductNormalizer;
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\ProductAssociationTypeNotFoundException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
@@ -53,6 +54,35 @@ final class ProductNormalizerTest extends TestCase
             ],
             $normalizer->normalize($product->reveal())
         );
+    }
+
+    public function testItThrowsExceptionWhenAssociationTypeCodeIsNull(): void
+    {
+        $baseNormalizer = $this->prophesize(ProductNormalizerInterface::class);
+        $query = $this->prophesize(GetAssociationTypeCodeByAssociationIdQueryInterface::class);
+        $iriToIdentifierConverter = $this->prophesize(IriToIdentifierConverterInterface::class);
+
+        $normalizer = new ProductNormalizer(
+            $baseNormalizer->reveal(),
+            $query->reveal(),
+            $iriToIdentifierConverter->reveal(),
+        );
+
+        $product = $this->prophesize(Product::class);
+        $baseNormalizer->normalize($product->reveal(), null, [])->willReturn([
+            'code' => 'product_code',
+            'associations' => [
+                '/api/v2/product-associations/1',
+            ],
+        ]);
+
+        $iriToIdentifierConverter->getIdentifier('/api/v2/product-associations/1')->willReturn('1');
+        $query->get(1)->willReturn(null);
+
+        $this->expectException(ProductAssociationTypeNotFoundException::class);
+        $this->expectExceptionMessage('Product association type not found for association with id "1".');
+
+        $normalizer->normalize($product->reveal());
     }
 }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer;
 
 use CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface;
+use CommerceWeavers\SyliusAlsoBoughtPlugin\Exception\ProductAssociationTypeNotFoundException;
 use Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -39,7 +40,7 @@ final class ProductNormalizer implements ContextAwareNormalizerInterface, Normal
             $associationTypeCode = $this->getAssociationTypeCodeByAssociationIdQuery->get((int) $id);
 
             if (null === $associationTypeCode) {
-                continue;
+                throw new ProductAssociationTypeNotFoundException((int) $id);
             }
 
             $object['associations'][$associationTypeCode] = $association;
