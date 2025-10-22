@@ -8,9 +8,8 @@
     <services>
         <service id="CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer\ProductNormalizer" decorates="Sylius\Bundle\ApiBundle\Serializer\ProductNormalizer">
             <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Api\Normalizer\ProductNormalizer.inner" />
-            <argument type="service" id="api_platform.item_data_provider" />
+            <argument type="service" id="CommerceWeavers\SyliusAlsoBoughtPlugin\Doctrine\Query\GetAssociationTypeCodeByAssociationIdQueryInterface" />
             <argument type="service" id="Sylius\Bundle\ApiBundle\Converter\IriToIdentifierConverterInterface" />
-            <argument type="string">%sylius.model.product_association.class%</argument>
             <tag name="serializer.normalizer" priority="64" />
         </service>
     </services>
